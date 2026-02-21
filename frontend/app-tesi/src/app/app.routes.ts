@@ -19,9 +19,9 @@ export const routes: Routes = [
       },
 
       {
-        path: 'auth',
+        path: 'login',
         loadComponent: () =>
-          import('./pages/auth/auth.component').then((m) => m.AuthComponent),
+          import('./pages/login/login.component').then((m) => m.LoginComponent),
       },
 
       {
@@ -31,19 +31,17 @@ export const routes: Routes = [
       },
 
       {
-        path: 'companies',
+        path: 'register',
         loadComponent: () =>
-          import('./pages/companies/companies.component').then(
-            (m) => m.CompaniesComponent,
-          ),
+          import('./pages/register/register.component')
+            .then(m => m.RegisterComponent)
       },
 
       {
-        path: 'students',
+        path: 'profile',
         loadComponent: () =>
-          import('./pages/students/students.component').then(
-            (m) => m.StudentsComponent,
-          ),
+          import('./pages/profile/profile.component')
+            .then(m => m.ProfileComponent)
       },
 
       {

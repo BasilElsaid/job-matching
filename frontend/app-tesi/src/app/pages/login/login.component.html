@@ -1,1 +1,51 @@
-<p>login works!</p>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <!-- 🔴 LOGIN -->
+    <div *ngIf="!authService.isAuthenticated()">
+      <mat-card-title> 🔐 Login </mat-card-title>
+
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+            <mat-error *ngIf="loginForm.get('email')?.invalid">
+              Email non valida
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="loginForm.get('password')?.invalid">
+              Password obbligatoria
+            </mat-error>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            color="primary"
+            class="full-width"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+          </button>
+        </form>
+      </mat-card-content>
+    </div>
+
+    <!-- 🟢 LOGGED IN -->
+    <div *ngIf="authService.isAuthenticated()">
+      <mat-card-title> ✅ Accesso Effettuato </mat-card-title>
+
+      <mat-card-content>
+        <p>Sei autenticato correttamente.</p>
+
+        <button mat-raised-button color="warn" (click)="logout()">
+          Logout
+        </button>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

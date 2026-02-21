@@ -5,18 +5,41 @@
 
   <button mat-button routerLink="/">Home</button>
   <button mat-button routerLink="/jobs">Jobs</button>
-  <button mat-button routerLink="/companies">Companies</button>
-  <button mat-button routerLink="/students">Students</button>
 
+  <!-- 🔵 Profile → solo se loggato -->
+  <button
+    mat-button
+    routerLink="/profile"
+    *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+  >
+    Profile
+  </button>
+
+  <!-- 🟢 Register → solo se NON loggato -->
+  <button
+    mat-button
+    routerLink="/register"
+    *ngIf="!authService.isAuthenticated()"
+  >
+    Register
+  </button>
+
+  <!-- 🔴 Admin → solo se admin -->
+  <button mat-button routerLink="/admin" *ngIf="authService.isAdmin()">
+    Admin
+  </button>
+
+  <!-- 🔵 Login -->
   <button
     mat-stroked-button
     color="accent"
     *ngIf="!authService.isAuthenticated()"
-    routerLink="/auth"
+    routerLink="/login"
   >
     Login
   </button>
 
+  <!-- 🔴 Logout -->
   <button
     mat-raised-button
     color="warn"
