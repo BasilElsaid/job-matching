@@ -1,1 +1,36 @@
-<p>layout works!</p>
+<mat-toolbar color="primary">
+  <span class="logo">🚀 Job Platform</span>
+
+  <span class="spacer"></span>
+
+  <button mat-button routerLink="/">Home</button>
+  <button mat-button routerLink="/jobs">Jobs</button>
+  <button mat-button routerLink="/companies">Companies</button>
+  <button mat-button routerLink="/students">Students</button>
+
+  <button
+    mat-stroked-button
+    color="accent"
+    *ngIf="!authService.isAuthenticated()"
+    routerLink="/auth"
+  >
+    Login
+  </button>
+
+  <button
+    mat-raised-button
+    color="warn"
+    *ngIf="authService.isAuthenticated()"
+    (click)="logout()"
+  >
+    Logout
+  </button>
+</mat-toolbar>
+
+<div class="layout-content">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer">
+  © 2025 Job Platform | Built with Angular & Material
+</footer>

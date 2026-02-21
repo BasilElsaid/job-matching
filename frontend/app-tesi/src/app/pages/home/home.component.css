@@ -1,0 +1,11 @@
+.home-container {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
