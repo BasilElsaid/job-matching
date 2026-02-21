@@ -1,0 +1,22 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.register-card {
+  width: 500px;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}

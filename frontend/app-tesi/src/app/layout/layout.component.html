@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
-  <span class="logo">🚀 Job Platform</span>
+  <span class="logo">Job Matching</span>
 
   <span class="spacer"></span>
 
   <button mat-button routerLink="/">Home</button>
-  <button mat-button routerLink="/jobs">Jobs</button>
+  <button mat-button routerLink="/jobs">Annunci</button>
 
   <!-- 🔵 Profile → solo se loggato -->
   <button
@@ -21,7 +21,7 @@
     routerLink="/register"
     *ngIf="!authService.isAuthenticated()"
   >
-    Register
+    Registrati
   </button>
 
   <!-- 🔴 Admin → solo se admin -->
