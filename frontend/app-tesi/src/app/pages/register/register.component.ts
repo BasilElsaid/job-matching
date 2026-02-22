@@ -35,6 +35,10 @@ export class RegisterComponent {
     private authService: AuthService,
     private router: Router,
   ) {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this.registerForm = this.fb.group(
       {
         // ACCOUNT

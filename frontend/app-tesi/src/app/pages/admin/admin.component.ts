@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
+import { CompanyService } from '../../core/services/company.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,25 +14,32 @@ import { Job } from '../../core/models/job.model';
 })
 export class AdminComponent implements OnInit {
   jobs: Job[] = [];
+  companies: any[] = [];
 
-  constructor(private jobService: JobService) {}
+  constructor(
+    private jobService: JobService,
+    private companyService: CompanyService,
+  ) {}
 
   ngOnInit() {
-    this.loadJobs();
+    this.loadData();
   }
 
-  loadJobs() {
+  loadData() {
     this.jobService.getJobs().subscribe((data) => {
       this.jobs = data;
     });
+
+    this.companies = this.companyService.getCompanies();
   }
 
   deleteJob(id: number) {
     this.jobService.deleteJob(id);
-    this.loadJobs();
+    this.loadData();
   }
 
-  approveJob(id: number) {
-    console.log('Approve job', id);
+  deleteCompany() {
+    this.companyService.deleteCompany();
+    this.loadData();
   }
 }

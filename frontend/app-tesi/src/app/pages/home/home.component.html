@@ -1,14 +1,45 @@
-<div class="home-container">
-  <h1>Benvenuti nella piattaforma Job Matching</h1>
+<div class="hero">
+  <div class="hero-content">
+    <h1>Connecting Talent with Opportunities</h1>
 
-  <p>
-    Piattaforma di intermediazione tra aziende e studenti per la pubblicazione e
-    la consultazione di offerte di lavoro.
-  </p>
+    <p>
+      La piattaforma che collega aziende e studenti in modo semplice, veloce e
+      digitale.
+    </p>
 
-  <div class="actions">
-    <button mat-raised-button color="primary" routerLink="/jobs">
-      Visualizza Annunci
-    </button>
+    <div class="hero-actions">
+      <button mat-raised-button color="primary" routerLink="/jobs">
+        Esplora Annunci
+      </button>
+
+      <button
+        mat-raised-button
+        color="accent"
+        [routerLink]="authService.isCompany() ? '/dashboard' : '/register'"
+      >
+        {{
+          authService.isCompany() ? "Vai alla Dashboard" : "Registra Azienda"
+        }}
+      </button>
+    </div>
   </div>
+</div>
+
+<!-- FEATURES -->
+
+<div class="features">
+  <mat-card class="feature-card">
+    <h3>🔎 Cerca Lavori</h3>
+    <p>Trova opportunità in base a competenze e città.</p>
+  </mat-card>
+
+  <mat-card class="feature-card">
+    <h3>🏢 Aziende</h3>
+    <p>Le aziende pubblicano e gestiscono annunci facilmente.</p>
+  </mat-card>
+
+  <mat-card class="feature-card">
+    <h3>📩 Contatto Diretto</h3>
+    <p>Invia il tuo CV direttamente ai recruiter.</p>
+  </mat-card>
 </div>
