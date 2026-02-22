@@ -24,10 +24,13 @@ export class User {
   companyName?: string;
 
   @Prop()
-  phone?: string;
+  companyEmail?: string;
 
   @Prop()
-  address?: string;
+  companyPhone?: string;
+
+  @Prop()
+  companyAddress?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

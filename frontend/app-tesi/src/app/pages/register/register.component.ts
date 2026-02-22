@@ -56,7 +56,7 @@ export class RegisterComponent {
         // COMPANY DATA
         companyName: ['', Validators.required],
         companyEmail: ['', [Validators.required, Validators.email]],
-        phone: [
+        companyPhone: [
           '',
           [Validators.required, Validators.pattern(/^[0-9+\-\s]{8,15}$/)],
         ],

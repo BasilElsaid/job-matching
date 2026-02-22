@@ -5,6 +5,7 @@ export class CreateUserDto {
   role?: 'ADMIN' | 'COMPANY' | 'USER';
 
   companyName?: string;
-  phone?: string;
-  address?: string;
+  companyEmail?: string;
+  companyPhone?: string;
+  companyAddress?: string;
 }
