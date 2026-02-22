@@ -1,35 +1,35 @@
 <div class="create-container">
   <mat-card class="create-card">
-    <h2>Create Job Announcement</h2>
+    <h2>Crea annuncio di lavoro</h2>
 
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Job Title</mat-label>
+        <mat-label>Titolo Lavoro</mat-label>
         <input matInput formControlName="title" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Location</mat-label>
+        <mat-label>Posizione</mat-label>
         <input matInput formControlName="location" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Contract Type</mat-label>
+        <mat-label>Tipo Contratto</mat-label>
         <input matInput formControlName="type" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Description</mat-label>
+        <mat-label>Descrizione</mat-label>
         <textarea matInput rows="5" formControlName="description"> </textarea>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Contact Email</mat-label>
+        <mat-label>Email di contatto</mat-label>
         <input matInput type="email" formControlName="companyEmail" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Contact Phone</mat-label>
+        <mat-label>Telefono di contatto</mat-label>
         <input matInput formControlName="companyPhone" />
       </mat-form-field>
 
@@ -39,7 +39,7 @@
         class="full-width"
         [disabled]="jobForm.invalid"
       >
-        Publish Job
+        Pubblica Annuncio
       </button>
     </form>
   </mat-card>

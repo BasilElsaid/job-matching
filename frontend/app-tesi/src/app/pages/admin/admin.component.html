@@ -1,1 +1,27 @@
-<p>admin works!</p>
+<div class="admin-container">
+  <mat-card class="admin-card">
+    <h2>🔐 Admin Dashboard</h2>
+    <p>breve descrizione.</p>
+  </mat-card>
+
+  <mat-card class="admin-section">
+    <h3>Tutti Gli Annunci Disponbili</h3>
+
+    <div *ngFor="let job of jobs" class="admin-job">
+      <div>
+        <h4>{{ job.title }}</h4>
+        <p>{{ job.company }} • {{ job.location }}</p>
+      </div>
+
+      <div class="actions">
+        <button mat-stroked-button color="primary" (click)="approveJob(job.id)">
+          Approva
+        </button>
+
+        <button mat-stroked-button color="warn" (click)="deleteJob(job.id)">
+          Elimina
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

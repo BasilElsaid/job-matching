@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { JobService } from '../../core/services/job.service';
 
@@ -21,7 +21,7 @@ import { JobService } from '../../core/services/job.service';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    NgIf,
+    CommonModule,
   ],
   templateUrl: './create-job.component.html',
   styleUrl: './create-job.component.css',
