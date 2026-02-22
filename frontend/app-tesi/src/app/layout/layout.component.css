@@ -1,32 +1,54 @@
-/* Navbar */
-mat-toolbar {
+/* ================= NAVBAR ================= */
+
+.navbar {
   position: fixed;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Logo */
 .logo {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 1px;
 }
 
-/* Spacing */
 .spacer {
   flex: 1 1 auto;
 }
 
-/* Contenuto centrale */
-.layout-content {
-  margin-top: 80px;
-  padding: 40px;
-  min-height: calc(100vh - 160px);
-  background: #f4f6f9;
+/* ================= DESKTOP MENU ================= */
+
+.desktop-menu {
+  display: flex;
+  gap: 1rem;
 }
 
-/* Footer */
+/* ================= BURGER ================= */
+
+.menu-button {
+  display: none;
+  margin-left: 1rem;
+}
+
+/* ================= LAYOUT ================= */
+
+.sidenav-container {
+  margin-top: 64px;
+  height: calc(100vh - 64px);
+}
+
+.layout-content {
+  padding: 40px;
+  background: #f4f6f9;
+  min-height: calc(100vh - 64px);
+}
+
+/* ================= FOOTER ================= */
+
 .footer {
   text-align: center;
   padding: 20px;
@@ -34,4 +56,50 @@ mat-toolbar {
   color: white;
   font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+/* ================= SIDENAV ================= */
+
+.sidenav-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+}
+
+/* Hover */
+.sidenav-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Attivo */
+.active-link {
+  background: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+/* Rimuove focus blu */
+.sidenav-btn:focus {
+  outline: none;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .layout-content {
+    padding: 20px;
+  }
 }

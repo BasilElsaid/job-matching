@@ -1,58 +1,140 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="navbar">
+  <!-- Logo a sinistra -->
   <span class="logo">Job Matching</span>
 
   <span class="spacer"></span>
 
-  <button mat-button routerLink="/">Home</button>
-  <button mat-button routerLink="/jobs">Annunci</button>
+  <!-- MENU DESKTOP -->
+  <div class="desktop-menu">
+    <button mat-button routerLink="/">Home</button>
+    <button mat-button routerLink="/jobs">Annunci</button>
 
-  <!-- 🔵 Dashboard → solo se loggato -->
-  <button
-    mat-button
-    routerLink="/dashboard"
-    *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
-  >
-    Dashboard
-  </button>
+    <button
+      mat-button
+      routerLink="/dashboard"
+      *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+    >
+      Dashboard
+    </button>
 
-  <!-- 🟢 Register → solo se NON loggato -->
-  <button
-    mat-button
-    routerLink="/register"
-    *ngIf="!authService.isAuthenticated()"
-  >
-    Registrati
-  </button>
+    <button
+      mat-button
+      routerLink="/register"
+      *ngIf="!authService.isAuthenticated()"
+    >
+      Registrati
+    </button>
 
-  <!-- 🔴 Admin → solo se admin -->
-  <button mat-button routerLink="/admin" *ngIf="authService.isAdmin()">
-    Admin
-  </button>
+    <button mat-button routerLink="/admin" *ngIf="authService.isAdmin()">
+      Admin
+    </button>
 
-  <!-- 🔵 Login -->
-  <button
-    mat-stroked-button
-    color="accent"
-    *ngIf="!authService.isAuthenticated()"
-    routerLink="/login"
-  >
-    Login
-  </button>
+    <button
+      mat-stroked-button
+      color="accent"
+      *ngIf="!authService.isAuthenticated()"
+      routerLink="/login"
+    >
+      Login
+    </button>
 
-  <!-- 🔴 Logout -->
-  <button
-    mat-raised-button
-    color="warn"
-    *ngIf="authService.isAuthenticated()"
-    (click)="logout()"
-  >
-    Logout
+    <button
+      mat-raised-button
+      color="warn"
+      *ngIf="authService.isAuthenticated()"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+
+  <!-- 🔥 BURGER A DESTRA (SOLO MOBILE) -->
+  <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+<mat-sidenav #sidenav mode="over" position="end" class="sidenav">
 
-<div class="layout-content">
-  <router-outlet></router-outlet>
-</div>
+  <div class="sidenav-menu">
+
+    <button
+      class="sidenav-btn"
+      routerLink="/"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="sidenav.close()"
+    >
+      Home
+    </button>
+
+    <button
+      class="sidenav-btn"
+      routerLink="/jobs"
+      routerLinkActive="active-link"
+      (click)="sidenav.close()"
+    >
+      Annunci
+    </button>
+
+    <button
+      class="sidenav-btn"
+      routerLink="/dashboard"
+      routerLinkActive="active-link"
+      *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+      (click)="sidenav.close()"
+    >
+      Dashboard
+    </button>
+
+    <button
+      class="sidenav-btn"
+      routerLink="/register"
+      routerLinkActive="active-link"
+      *ngIf="!authService.isAuthenticated()"
+      (click)="sidenav.close()"
+    >
+      Registrati
+    </button>
+
+    <button
+      class="sidenav-btn"
+      routerLink="/admin"
+      routerLinkActive="active-link"
+      *ngIf="authService.isAdmin()"
+      (click)="sidenav.close()"
+    >
+      Admin
+    </button>
+
+    <button
+      class="sidenav-btn"
+      routerLink="/login"
+      routerLinkActive="active-link"
+      *ngIf="!authService.isAuthenticated()"
+      (click)="sidenav.close()"
+    >
+      Login
+    </button>
+
+    <button
+      class="sidenav-btn"
+      *ngIf="authService.isAuthenticated()"
+      (click)="logout(); sidenav.close()"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="layout-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 <footer class="footer">
   © 2026 Job Matching | Built with Angular & Material
