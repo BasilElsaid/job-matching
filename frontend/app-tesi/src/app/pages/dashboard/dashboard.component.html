@@ -1,0 +1,62 @@
+<div class="dashboard">
+  <!-- ACTION BUTTON -->
+  <div class="dashboard-actions">
+    <button mat-raised-button color="primary" routerLink="/create-job">
+      ➕ Crea Nuovo Annuncio
+    </button>
+  </div>
+
+  <!-- HEADER -->
+  <mat-card class="dashboard-header">
+    <div class="header-left">
+      <h1>{{ company.name }}</h1>
+      <p class="subtitle">{{ company.description }}</p>
+    </div>
+
+    <div class="header-actions">
+      <button mat-stroked-button color="primary">Modifica Profilo</button>
+    </div>
+  </mat-card>
+
+  <!-- INFO GRID -->
+  <div class="dashboard-grid">
+    <mat-card class="info-card">
+      <h3>📧 Email Aziendale</h3>
+      <p>{{ company.email }}</p>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <h3>📞 Telefono</h3>
+      <p>{{ company.phone }}</p>
+    </mat-card>
+
+    <mat-card class="info-card">
+      <h3>📍 Indirizzo</h3>
+      <p>{{ company.address }}</p>
+    </mat-card>
+  </div>
+
+  <!-- MY JOBS -->
+  <mat-card class="jobs-section">
+    <h2>📌 My Jobs</h2>
+
+    <div *ngIf="myJobs.length === 0">No jobs created yet.</div>
+
+    <div class="jobs-list">
+      <mat-card *ngFor="let job of myJobs" class="job-item">
+        <h3>{{ job.title }}</h3>
+        <p>{{ job.location }} • {{ job.type }}</p>
+
+        <div class="job-actions">
+          <button mat-stroked-button color="primary" (click)="editJob(job)">
+            Edit
+          </button>
+
+          <button mat-stroked-button color="warn" (click)="deleteJob(job.id)">
+            Delete
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

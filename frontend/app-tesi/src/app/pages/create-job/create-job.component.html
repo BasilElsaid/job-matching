@@ -1,0 +1,46 @@
+<div class="create-container">
+  <mat-card class="create-card">
+    <h2>Create Job Announcement</h2>
+
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Job Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contract Type</mat-label>
+        <input matInput formControlName="type" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput rows="5" formControlName="description"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contact Email</mat-label>
+        <input matInput type="email" formControlName="companyEmail" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contact Phone</mat-label>
+        <input matInput formControlName="companyPhone" />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="full-width"
+        [disabled]="jobForm.invalid"
+      >
+        Publish Job
+      </button>
+    </form>
+  </mat-card>
+</div>

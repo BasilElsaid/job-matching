@@ -20,6 +20,24 @@ export const routes: Routes = [
       },
 
       {
+        path: 'jobs/:id',
+        loadComponent: () =>
+          import('./pages/job-detail/job-detail.component').then(
+            (m) => m.JobDetailComponent,
+          ),
+      },
+
+      {
+        path: 'create-job',
+        loadComponent: () =>
+          import('./pages/create-job/create-job.component').then(
+            (m) => m.CreateJobComponent,
+          ),
+        canActivate: [roleGuard],
+        data: { role: 'company' },
+      },
+
+      {
         path: 'login',
         loadComponent: () =>
           import('./pages/login/login.component').then((m) => m.LoginComponent),
@@ -42,10 +60,10 @@ export const routes: Routes = [
       },
 
       {
-        path: 'profile',
+        path: 'dashboard',
         loadComponent: () =>
-          import('./pages/profile/profile.component').then(
-            (m) => m.ProfileComponent,
+          import('./pages/dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent,
           ),
         canActivate: [roleGuard],
         data: { role: 'company' },

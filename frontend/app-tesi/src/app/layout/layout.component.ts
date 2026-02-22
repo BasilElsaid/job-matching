@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../core/services/auth.service';
@@ -12,11 +12,14 @@ import { NgIf } from '@angular/common';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
-
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+  ) {}
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['']);
   }
 
   login() {

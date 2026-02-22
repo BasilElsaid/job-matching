@@ -10,7 +10,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
 
   // 🔴 Se non autenticato → blocca
   if (!authService.isAuthenticated()) {
-    router.navigate(['/auth']);
+    router.navigate(['/login']);
     return false;
   }
 

@@ -75,7 +75,7 @@ export class RegisterComponent {
       // Simuliamo registrazione
       this.authService.login('company');
 
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/dashbaord']);
     }
   }
 }

@@ -1,0 +1,38 @@
+<div class="detail-container">
+  <div *ngIf="loading">Carico dettagli annuncio...</div>
+
+  <mat-card *ngIf="!loading && job" class="detail-card">
+    <mat-card-title>{{ job.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ job.company }} • {{ job.location }}
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <p><strong>Tipo Contratto:</strong> {{ job.type }}</p>
+      <p><strong>Published:</strong> {{ job.createdAt | date }}</p>
+
+      <h3>Description</h3>
+      <p>{{ job.description }}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="contact-section">
+      <h3>Contattaci!</h3>
+
+      <p>
+        Manda il tuo Currivulum Vitae a :
+        <a [href]="'mailto:' + job.companyEmail">
+          {{ job.companyEmail }}
+        </a>
+      </p>
+
+      <p>
+        Per ulteriori informazione il telefono aziendale è:
+        <a [href]="'tel:' + job.companyPhone">
+          {{ job.companyPhone }}
+        </a>
+      </p>
+    </mat-card-actions>
+
+    <div *ngIf="!loading && !job">Job not found.</div>
+  </mat-card>
+</div>

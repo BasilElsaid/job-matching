@@ -1,0 +1,16 @@
+.create-container {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.create-card {
+  width: 600px;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
