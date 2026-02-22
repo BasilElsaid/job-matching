@@ -32,11 +32,13 @@ export class DashboardComponent implements OnInit {
   loadMyJobs() {
     this.jobService.getJobs().subscribe((jobs) => {
       // 🔥 FILTRIAMO PER AZIENDA (temporaneo)
-      this.myJobs = jobs.filter((job) => job.company === this.company.name);
+      this.myJobs = jobs.filter(
+        (job) => job.companyId?.companyName === this.company.name,
+      );
     });
   }
 
-  deleteJob(id: number) {
+  deleteJob(id: string) {
     this.jobService.deleteJob(id);
     this.loadMyJobs();
   }

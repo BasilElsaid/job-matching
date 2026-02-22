@@ -15,7 +15,11 @@ export class Job {
   location: string;
 
   @Prop({ required: true })
-  companyId: Types.ObjectId; // 🔥 collegamento all'utente azienda
+  type: string;
+
+  // 🔥 CORRETTO PER POPULATE
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  companyId: Types.ObjectId;
 
   @Prop({ default: true })
   active: boolean;

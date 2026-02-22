@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit {
     this.companies = this.companyService.getCompanies();
   }
 
-  deleteJob(id: number) {
+  deleteJob(id: string) {
     this.jobService.deleteJob(id);
     this.loadData();
   }

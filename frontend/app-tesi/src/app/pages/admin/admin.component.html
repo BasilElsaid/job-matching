@@ -30,13 +30,13 @@
     <div *ngFor="let job of jobs" class="admin-job">
       <div>
         <h4>{{ job.title }}</h4>
-        <p>{{ job.company }}</p>
+        <p>{{ job.companyId?.companyName }}</p>
       </div>
 
       <div class="actions">
         <button mat-stroked-button color="primary">Approva</button>
 
-        <button mat-stroked-button color="warn" (click)="deleteJob(job.id)">
+        <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
           Elimina
         </button>
       </div>

@@ -1,38 +1,55 @@
-<div class="detail-container">
-  <div *ngIf="loading">Carico dettagli annuncio...</div>
+<mat-card *ngIf="!loading && job" class="detail-card">
 
-  <mat-card *ngIf="!loading && job" class="detail-card">
-    <mat-card-title>{{ job.title }}</mat-card-title>
-    <mat-card-subtitle>
-      {{ job.company }} • {{ job.location }}
-    </mat-card-subtitle>
+  <!-- HEADER -->
+  <div class="card-header">
+    <div>
+      <mat-card-title>{{ job.title }}</mat-card-title>
+      <mat-card-subtitle>
+        📍 {{ job.location }} |
+        🏢 {{ job.companyId?.companyName }}
+      </mat-card-subtitle>
+    </div>
 
-    <mat-card-content>
-      <p><strong>Tipo Contratto:</strong> {{ job.type }}</p>
-      <p><strong>Published:</strong> {{ job.createdAt | date }}</p>
+    <!-- Tipo contratto come badge -->
+    <span class="job-type">
+      {{ job.type }}
+    </span>
+  </div>
 
-      <h3>Description</h3>
-      <p>{{ job.description }}</p>
-    </mat-card-content>
+  <!-- BODY -->
+  <mat-card-content>
+    <div class="meta-info">
+      <span>
+        📅 Pubblicato:
+        {{ job.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+      </span>
+    </div>
 
-    <mat-card-actions class="contact-section">
-      <h3>Contattaci!</h3>
+    <h3 class="section-title">Descrizione</h3>
+    <p class="description">
+      {{ job.description }}
+    </p>
+  </mat-card-content>
 
-      <p>
-        Manda il tuo Currivulum Vitae a :
-        <a [href]="'mailto:' + job.companyEmail">
-          {{ job.companyEmail }}
-        </a>
-      </p>
+  <mat-divider></mat-divider>
 
-      <p>
-        Per ulteriori informazione il telefono aziendale è:
-        <a [href]="'tel:' + job.companyPhone">
-          {{ job.companyPhone }}
-        </a>
-      </p>
-    </mat-card-actions>
+  <!-- CONTACT -->
+  <mat-card-actions class="contact-section">
+    <h3>Contattaci</h3>
 
-    <div *ngIf="!loading && !job">Job not found.</div>
-  </mat-card>
-</div>
+    <p *ngIf="job.companyId?.email">
+      📩
+      <a [href]="'mailto:' + job.companyId?.email">
+        {{ job.companyId?.email }}
+      </a>
+    </p>
+
+    <p *ngIf="job.companyId?.phone">
+      📞
+      <a [href]="'tel:' + job.companyId?.phone">
+        {{ job.companyId?.phone }}
+      </a>
+    </p>
+  </mat-card-actions>
+
+</mat-card>

@@ -48,17 +48,15 @@ export class CreateJobComponent {
   }
 
   onSubmit() {
-    if (this.jobForm.valid) {
-      const newJob = {
-        ...this.jobForm.value,
-        id: Date.now(),
-        company: 'Company Name', // poi verrà dal backend
-        createdAt: new Date(),
-      };
+    if (this.jobForm.invalid) return;
 
-      this.jobService.createJob(newJob);
-
-      this.router.navigate(['/jobs']);
-    }
+    this.jobService.createJob(this.jobForm.value).subscribe({
+      next: () => {
+        this.router.navigate(['/jobs']);
+      },
+      error: (err) => {
+        console.error('Errore creazione job:', err);
+      },
+    });
   }
 }

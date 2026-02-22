@@ -38,4 +38,9 @@ export class JobsController {
   deleteJob(@Param('id') id: string, @Req() req) {
     return this.jobsService.delete(id, req.user.userId, req.user.role);
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.jobsService.findOne(id);
+  }
 }

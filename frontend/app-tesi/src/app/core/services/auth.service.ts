@@ -18,12 +18,13 @@ export class AuthService {
   isAuthenticated = this._isAuthenticated.asReadonly();
   role = this._role.asReadonly();
 
-  login(role: UserRole = 'company') {
+  login(response: any, role: UserRole = 'company') {
     this._isAuthenticated.set(true);
     this._role.set(role);
 
     localStorage.setItem('auth', 'true');
     localStorage.setItem('role', role);
+    localStorage.setItem('token', response.access_token);
   }
 
   logout() {

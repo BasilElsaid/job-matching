@@ -49,4 +49,11 @@ export class JobsService {
 
     return { message: 'Job eliminato con successo' };
   }
+
+  async findOne(id: string) {
+    return this.jobModel
+      .findById(id)
+      .populate('companyId', 'companyName email phone')
+      .exec();
+  }
 }

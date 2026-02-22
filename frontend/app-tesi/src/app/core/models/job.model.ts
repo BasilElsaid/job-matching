@@ -1,12 +1,17 @@
 export interface Job {
-  id: number;
+  _id: string;
   title: string;
-  company: string;
+  description: string;
   location: string;
   type: string;
-  description: string;
-  createdAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 
-  companyEmail: string;
-  companyPhone: string;
+  // 🔥 populate restituisce l'utente azienda qui
+  companyId?: {
+    _id: string;
+    companyName?: string;
+    email?: string;
+    phone?: string;
+  };
 }

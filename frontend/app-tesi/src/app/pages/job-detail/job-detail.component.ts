@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe, NgIf, NgStyle } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-job-detail',
-  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe],
+  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, NgStyle, MatDividerModule],
   templateUrl: './job-detail.component.html',
   styleUrl: './job-detail.component.css',
 })
@@ -22,11 +23,24 @@ export class JobDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
 
-    this.jobService.getJobById(id).subscribe((data) => {
-      this.job = data;
-      this.loading = false;
+      if (!id) {
+        this.loading = false;
+        return;
+      }
+
+      this.jobService.getJobById(id).subscribe({
+        next: (data) => {
+          this.job = data;
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Errore caricamento job:', err);
+          this.loading = false;
+        },
+      });
     });
   }
 }
