@@ -15,7 +15,23 @@ export class CompanyService {
     return this.http.get<User[]>(`${this.apiUrl}?role=COMPANY`);
   }
 
-  deleteCompany(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  getMe(): Observable<User> {
+    const token = localStorage.getItem('token');
+
+    return this.http.get<User>('http://localhost:3000/users/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  deleteCompany(id: string) {
+    const token = localStorage.getItem('token');
+
+    return this.http.delete(`${this.apiUrl}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 }

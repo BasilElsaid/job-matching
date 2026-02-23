@@ -13,6 +13,7 @@ import { CreateUserDto } from './create-user.dto';
 import { Roles } from 'src/auth/roles.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { Query } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
@@ -26,14 +27,14 @@ export class UsersController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Query('role') role?: string) {
+    return this.usersService.findAll(role);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('me')
   getProfile(@Req() req) {
-    return req.user;
+    return this.usersService.findById(req.user.userId);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)

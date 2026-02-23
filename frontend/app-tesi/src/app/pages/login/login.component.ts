@@ -29,6 +29,7 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -43,14 +44,17 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.invalid) return;
 
+    this.errorMessage = null; // reset errore
+
     this.authService.loginApi(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log('LOGIN RESPONSE:', res);
-
         this.authService.login(res);
       },
       error: (err) => {
         console.error('Login fallito', err);
+
+        // 🔴 Messaggio errore visibile
+        this.errorMessage = err.error?.message || 'Credenziali non valide';
       },
     });
   }

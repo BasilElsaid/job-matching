@@ -47,7 +47,7 @@ export class CreateJobComponent {
 
     this.jobService.createJob(this.jobForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/jobs']);
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         console.error('Errore creazione job:', err);

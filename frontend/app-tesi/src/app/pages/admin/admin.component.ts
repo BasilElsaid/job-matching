@@ -1,3 +1,7 @@
+type JobWithUI = Job & {
+  expanded?: boolean;
+};
+
 import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +18,7 @@ import { User } from '../../core/models/user.model';
   styleUrl: './admin.component.css',
 })
 export class AdminComponent implements OnInit {
-  jobs: Job[] = [];
+  jobs: JobWithUI[] = [];
   companies: User[] = [];
 
   constructor(
@@ -82,5 +86,9 @@ export class AdminComponent implements OnInit {
         console.error('Errore approvazione:', err);
       },
     });
+  }
+
+  toggleDescription(job: JobWithUI) {
+    job.expanded = !job.expanded;
   }
 }

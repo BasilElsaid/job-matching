@@ -6,6 +6,8 @@ import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { RouterModule } from '@angular/router';
 import { MatDivider } from '@angular/material/divider';
+import { User } from '../../core/models/user.model';
+import { CompanyService } from '../../core/services/company.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,20 +22,29 @@ import { MatDivider } from '@angular/material/divider';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-  company = {
-    name: 'Nome Azienda',
-    email: 'company@email.com',
-    phone: '+39 333 1234567',
-    address: 'Via Roma 1',
-    description: 'Company description',
-  };
 
+  company!: User;
   myJobs: Job[] = [];
 
-  constructor(private jobService: JobService) {}
+  constructor(
+    private jobService: JobService,
+    private companyService: CompanyService
+  ) {}
 
   ngOnInit() {
+    this.loadCompany();
     this.loadMyJobs();
+  }
+
+  loadCompany() {
+    this.companyService.getMe().subscribe({
+      next: (data) => {
+        this.company = data;
+      },
+      error: (err) => {
+        console.error('Errore caricamento azienda:', err);
+      },
+    });
   }
 
   loadMyJobs() {

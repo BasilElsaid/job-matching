@@ -9,12 +9,7 @@
   <!-- HEADER -->
   <mat-card class="dashboard-header">
     <div class="header-left">
-      <h1>{{ company.name }}</h1>
-      <p class="subtitle">{{ company.description }}</p>
-    </div>
-
-    <div class="header-actions">
-      <button mat-stroked-button color="primary">Modifica Profilo</button>
+      <h1>{{ company.companyName }}</h1>
     </div>
   </mat-card>
 
@@ -22,17 +17,17 @@
   <div class="dashboard-grid">
     <mat-card class="info-card">
       <h3>📧 Email Aziendale</h3>
-      <p>{{ company.email }}</p>
+      <p>{{ company.companyEmail }}</p>
     </mat-card>
 
     <mat-card class="info-card">
       <h3>📞 Telefono</h3>
-      <p>{{ company.phone }}</p>
+      <p>{{ company.companyPhone }}</p>
     </mat-card>
 
     <mat-card class="info-card">
       <h3>📍 Indirizzo</h3>
-      <p>{{ company.address }}</p>
+      <p>{{ company.companyAddress }}</p>
     </mat-card>
   </div>
 
@@ -51,9 +46,21 @@
             <mat-card-subtitle> 📍 {{ job.location }} </mat-card-subtitle>
           </div>
 
-          <span class="job-type">
-            {{ job.type }}
-          </span>
+          <div class="header-right">
+            <span class="job-type">
+              {{ job.type }}
+            </span>
+
+            <div
+              class="status-badge"
+              [ngClass]="{
+                pending: job.status === 'PENDING',
+                approved: job.status === 'APPROVED',
+              }"
+            >
+              {{ job.status }}
+            </div>
+          </div>
         </div>
 
         <!-- BODY -->

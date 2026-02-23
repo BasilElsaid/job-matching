@@ -61,7 +61,22 @@
         </mat-card-subtitle>
 
         <mat-card-content>
-          <p>{{ job.description }}</p>
+          <p
+            [ngClass]="{
+              'admin-job-description': !job.expanded,
+            }"
+          >
+            {{ job.description }}
+          </p>
+
+          <button
+            mat-button
+            color="primary"
+            *ngIf="job.description.length > 200"
+            (click)="toggleDescription(job)"
+          >
+            {{ job.expanded ? "Mostra meno" : "Mostra altro" }}
+          </button>
         </mat-card-content>
 
         <mat-card-actions>

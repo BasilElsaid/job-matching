@@ -7,7 +7,7 @@
   gap: 2.5rem;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .dashboard-header {
   padding: 2.5rem;
@@ -28,7 +28,14 @@
   color: #666;
 }
 
-/* GRID INFO */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* ================= INFO GRID ================= */
 
 .dashboard-grid {
   display: grid;
@@ -50,14 +57,14 @@
   margin-bottom: 0.5rem;
 }
 
-/* ACTION BUTTON */
+/* ================= ACTION BUTTON ================= */
 
 .dashboard-actions {
   display: flex;
   justify-content: flex-end;
 }
 
-/* JOB SECTION */
+/* ================= JOB SECTION ================= */
 
 .jobs-section {
   padding: 2rem;
@@ -70,7 +77,7 @@
   gap: 2rem;
 }
 
-/* JOB CARD (layout unificato con detail page) */
+/* ================= JOB CARD ================= */
 
 .detail-card {
   padding: 2rem;
@@ -121,4 +128,25 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 1rem;
+}
+
+/* ================= STATUS BADGE ================= */
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+/* 🟡 PENDING */
+.status-badge.pending {
+  background-color: #ff9800;
+}
+
+/* 🟢 APPROVED */
+.status-badge.approved {
+  background-color: #4caf50;
 }
