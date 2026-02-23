@@ -53,7 +53,7 @@ export class JobsService {
   async findOne(id: string) {
     return this.jobModel
       .findById(id)
-      .populate('companyId', 'companyName email phone')
+      .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
   }
 }

@@ -11,7 +11,7 @@ export interface Job {
   companyId?: {
     _id: string;
     companyName?: string;
-    email?: string;
-    phone?: string;
+    companyEmail?: string;
+    companyPhone?: string;
   };
 }

@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth.service';
 import { RouterModule } from '@angular/router';
-import { AuthApiService } from '../../core/services/auth-api.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +32,6 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authApi: AuthApiService,
     public authService: AuthService,
   ) {
     this.loginForm = this.fb.group({
@@ -42,19 +40,20 @@ export class LoginComponent {
     });
   }
 
-  onSubmit() {
-    if (this.loginForm.invalid) return;
+onSubmit() {
+  if (this.loginForm.invalid) return;
 
-    this.authApi.login(this.loginForm.value).subscribe({
-      next: (res) => {
-        this.authService.login(res);
-      },
-      error: (err) => {
-        console.error('Login fallito', err);
-      },
-    });
+  this.authService.loginApi(this.loginForm.value).subscribe({
+    next: (res) => {
+      console.log("LOGIN RESPONSE:", res);
 
-  }
+      this.authService.login(res);
+    },
+    error: (err) => {
+      console.error("Login fallito", err);
+    }
+  });
+}
 
   logout() {
     this.authService.logout();

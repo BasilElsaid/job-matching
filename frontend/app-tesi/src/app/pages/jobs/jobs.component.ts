@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,6 @@ import { ApiService } from '../../core/services/api.service';
     NgFor,
     NgIf,
     RouterModule,
-    JsonPipe,
   ],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.css',

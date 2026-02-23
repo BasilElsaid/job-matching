@@ -31,7 +31,4 @@ export class LayoutComponent {
     this.router.navigate(['']);
   }
 
-  login() {
-    this.authService.login();
-  }
 }

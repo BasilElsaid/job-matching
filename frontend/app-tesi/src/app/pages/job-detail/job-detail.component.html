@@ -1,12 +1,10 @@
 <mat-card *ngIf="!loading && job" class="detail-card">
-
   <!-- HEADER -->
   <div class="card-header">
     <div>
       <mat-card-title>{{ job.title }}</mat-card-title>
       <mat-card-subtitle>
-        📍 {{ job.location }} |
-        🏢 {{ job.companyId?.companyName }}
+        📍 {{ job.location }} | 🏢 {{ job.companyId?.companyName }}
       </mat-card-subtitle>
     </div>
 
@@ -21,7 +19,7 @@
     <div class="meta-info">
       <span>
         📅 Pubblicato:
-        {{ job.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+        {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
       </span>
     </div>
 
@@ -37,19 +35,18 @@
   <mat-card-actions class="contact-section">
     <h3>Contattaci</h3>
 
-    <p *ngIf="job.companyId?.email">
+    <p *ngIf="job.companyId?.companyEmail">
       📩
-      <a [href]="'mailto:' + job.companyId?.email">
-        {{ job.companyId?.email }}
+      <a [href]="'mailto:' + job.companyId?.companyEmail">
+        {{ job.companyId?.companyEmail }}
       </a>
     </p>
 
-    <p *ngIf="job.companyId?.phone">
+    <p *ngIf="job.companyId?.companyPhone">
       📞
-      <a [href]="'tel:' + job.companyId?.phone">
-        {{ job.companyId?.phone }}
+      <a [href]="'tel:' + job.companyId?.companyPhone">
+        {{ job.companyId?.companyPhone }}
       </a>
     </p>
   </mat-card-actions>
-
 </mat-card>

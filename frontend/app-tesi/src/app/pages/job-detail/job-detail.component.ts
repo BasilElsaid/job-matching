@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { DatePipe, NgIf, NgStyle } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-job-detail',
-  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, NgStyle, MatDividerModule],
+  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, MatDividerModule],
   templateUrl: './job-detail.component.html',
   styleUrl: './job-detail.component.css',
 })

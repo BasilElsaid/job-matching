@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
 export type UserRole = 'guest' | 'company' | 'admin';
@@ -6,6 +7,8 @@ export type UserRole = 'guest' | 'company' | 'admin';
   providedIn: 'root',
 })
 export class AuthService {
+
+  constructor(private http: HttpClient) {}
   // 🔥 LEGGIAMO SUBITO DAL LOCALSTORAGE
   private _isAuthenticated = signal<boolean>(
     localStorage.getItem('auth') === 'true',
@@ -18,13 +21,24 @@ export class AuthService {
   isAuthenticated = this._isAuthenticated.asReadonly();
   role = this._role.asReadonly();
 
+
+  loginApi(credentials: { email: string; password: string }) {
+    return this.http.post<any>('http://localhost:3000/auth/login', credentials);
+  }
+
   login(response: any, role: UserRole = 'company') {
+
+    console.log("LOGIN SALVATAGGIO TOKEN:", response);
+
     this._isAuthenticated.set(true);
     this._role.set(role);
 
     localStorage.setItem('auth', 'true');
     localStorage.setItem('role', role);
-    localStorage.setItem('token', response.access_token);
+
+    if (response?.access_token) {
+      localStorage.setItem('token', response.access_token);
+    }
   }
 
   logout() {
