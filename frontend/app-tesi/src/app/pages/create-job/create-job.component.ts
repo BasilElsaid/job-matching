@@ -39,11 +39,6 @@ export class CreateJobComponent {
       location: ['', Validators.required],
       type: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(20)]],
-      companyEmail: ['', [Validators.required, Validators.email]],
-      companyPhone: [
-        '',
-        [Validators.required, Validators.pattern(/^[0-9+\-\s]{8,15}$/)],
-      ],
     });
   }
 

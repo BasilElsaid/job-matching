@@ -49,6 +49,10 @@ export class AuthService {
     localStorage.removeItem('role');
   }
 
+  register(data: any) {
+    return this.http.post<any>('http://localhost:3000/users', data);
+  }
+
   isAdmin() {
     return this._isAuthenticated() && this._role() === 'admin';
   }

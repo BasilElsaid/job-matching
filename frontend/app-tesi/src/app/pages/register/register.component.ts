@@ -73,13 +73,29 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
+    if (this.registerForm.invalid) return;
 
-      // Simuliamo registrazione
-      this.authService.login('company');
+    const formData = this.registerForm.value;
 
-      this.router.navigate(['/dashbaord']);
-    }
+    // Rimuoviamo confirmPassword prima di inviare al backend
+    delete formData.confirmPassword;
+
+    // Impostiamo il ruolo automaticamente come COMPANY
+    formData.role = 'COMPANY';
+
+    this.authService.register(formData).subscribe({
+      next: (res) => {
+        console.log('✅ Utente registrato:', res);
+
+        // Dopo registrazione → facciamo login automatico
+        this.authService.login(res);
+
+        // Redirect dashboard
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.error('❌ Errore registrazione:', err);
+      },
+    });
   }
 }
