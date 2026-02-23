@@ -19,6 +19,10 @@ export class JobService {
     return this.http.get<Job>(`${this.apiUrl}/${id}`);
   }
 
+  getMyJobs(): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.apiUrl}/mine`);
+  }
+
   createJob(job: any): Observable<any> {
     return this.http.post(this.apiUrl, job);
   }

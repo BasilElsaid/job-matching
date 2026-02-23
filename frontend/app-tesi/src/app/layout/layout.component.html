@@ -17,33 +17,24 @@
       Dashboard
     </button>
 
-    <button
-      mat-button
-      routerLink="/register"
-      *ngIf="!authService.isAuthenticated()"
-    >
+    <button mat-button routerLink="/register" *ngIf="!isAuth()">
       Registrati
     </button>
 
-    <button mat-button routerLink="/admin" *ngIf="authService.isAdmin()">
+    <button mat-button routerLink="/admin" *ngIf="isAdmin() === 'ADMIN'">
       Admin
     </button>
 
     <button
       mat-stroked-button
       color="accent"
-      *ngIf="!authService.isAuthenticated()"
+      *ngIf="!isAuth()"
       routerLink="/login"
     >
       Login
     </button>
 
-    <button
-      mat-raised-button
-      color="warn"
-      *ngIf="authService.isAuthenticated()"
-      (click)="logout()"
-    >
+    <button mat-raised-button color="warn" *ngIf="isAuth()" (click)="logout()">
       Logout
     </button>
   </div>
@@ -54,80 +45,76 @@
   </button>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-<mat-sidenav #sidenav mode="over" position="end" class="sidenav">
+  <mat-sidenav #sidenav mode="over" position="end" class="sidenav">
+    <div class="sidenav-menu">
+      <button
+        class="sidenav-btn"
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="sidenav.close()"
+      >
+        Home
+      </button>
 
-  <div class="sidenav-menu">
+      <button
+        class="sidenav-btn"
+        routerLink="/jobs"
+        routerLinkActive="active-link"
+        (click)="sidenav.close()"
+      >
+        Annunci
+      </button>
 
-    <button
-      class="sidenav-btn"
-      routerLink="/"
-      routerLinkActive="active-link"
-      [routerLinkActiveOptions]="{ exact: true }"
-      (click)="sidenav.close()"
-    >
-      Home
-    </button>
+      <button
+        class="sidenav-btn"
+        routerLink="/dashboard"
+        routerLinkActive="active-link"
+        *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+        (click)="sidenav.close()"
+      >
+        Dashboard
+      </button>
 
-    <button
-      class="sidenav-btn"
-      routerLink="/jobs"
-      routerLinkActive="active-link"
-      (click)="sidenav.close()"
-    >
-      Annunci
-    </button>
+      <button
+        class="sidenav-btn"
+        routerLink="/register"
+        routerLinkActive="active-link"
+        *ngIf="!isAuth()"
+        (click)="sidenav.close()"
+      >
+        Registrati
+      </button>
 
-    <button
-      class="sidenav-btn"
-      routerLink="/dashboard"
-      routerLinkActive="active-link"
-      *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
-      (click)="sidenav.close()"
-    >
-      Dashboard
-    </button>
+      <button
+        class="sidenav-btn"
+        routerLink="/admin"
+        routerLinkActive="active-link"
+        *ngIf="isAdmin() === 'ADMIN'"
+        (click)="sidenav.close()"
+      >
+        Admin
+      </button>
 
-    <button
-      class="sidenav-btn"
-      routerLink="/register"
-      routerLinkActive="active-link"
-      *ngIf="!authService.isAuthenticated()"
-      (click)="sidenav.close()"
-    >
-      Registrati
-    </button>
+      <button
+        class="sidenav-btn"
+        routerLink="/login"
+        routerLinkActive="active-link"
+        *ngIf="!isAuth()"
+        (click)="sidenav.close()"
+      >
+        Login
+      </button>
 
-    <button
-      class="sidenav-btn"
-      routerLink="/admin"
-      routerLinkActive="active-link"
-      *ngIf="authService.isAdmin()"
-      (click)="sidenav.close()"
-    >
-      Admin
-    </button>
-
-    <button
-      class="sidenav-btn"
-      routerLink="/login"
-      routerLinkActive="active-link"
-      *ngIf="!authService.isAuthenticated()"
-      (click)="sidenav.close()"
-    >
-      Login
-    </button>
-
-    <button
-      class="sidenav-btn"
-      *ngIf="authService.isAuthenticated()"
-      (click)="logout(); sidenav.close()"
-    >
-      Logout
-    </button>
-
-  </div>
-
-</mat-sidenav>
+      <button
+        class="sidenav-btn"
+        *ngIf="isAuth()"
+        (click)="logout(); sidenav.close()"
+      >
+        Logout
+      </button>
+    </div>
+  </mat-sidenav>
 
   <mat-sidenav-content>
     <div class="layout-content">

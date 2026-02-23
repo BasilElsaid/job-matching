@@ -6,40 +6,61 @@
   <mat-card class="admin-section">
     <h3>🏢 Aziende Registrate</h3>
 
-    <div *ngIf="companies.length === 0">Nessun Azienda Registrata.</div>
+    <div *ngIf="companies.length === 0">Nessuna Azienda Registrata.</div>
 
-    <div *ngFor="let company of companies" class="admin-company">
-      <div>
-        <h4>{{ company.companyName }}</h4>
-        <p>{{ company.companyEmail }}</p>
-        <p>{{ company.phone }}</p>
-        <p>{{ company.address }}</p>
-      </div>
+    <div class="admin-users-grid">
+      <mat-card class="admin-user-card" *ngFor="let company of companies">
+        <mat-card-title>
+          {{ company.companyName }}
+        </mat-card-title>
 
-      <button mat-stroked-button color="warn" (click)="deleteCompany()">
-        Elimina Azienda
-      </button>
+        <mat-card-subtitle> 📧 {{ company.companyEmail }} </mat-card-subtitle>
+
+        <mat-card-content>
+          <p>📞 {{ company.companyPhone }}</p>
+          <p>📍 {{ company.companyAddress }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="deleteCompany(company._id)"
+          >
+            Elimina
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </mat-card>
 
   <!-- ================== JOBS ================== -->
 
   <mat-card class="admin-section">
-    <h3>📌 Annunci Disponbili</h3>
+    <h3>📌 Annunci Disponibili</h3>
 
-    <div *ngFor="let job of jobs" class="admin-job">
-      <div>
-        <h4>{{ job.title }}</h4>
-        <p>{{ job.companyId?.companyName }}</p>
-      </div>
+    <div *ngIf="jobs.length === 0">Nessun Annuncio Disponibile.</div>
 
-      <div class="actions">
-        <button mat-stroked-button color="primary">Approva</button>
+    <div class="admin-jobs-grid">
+      <mat-card class="admin-job-card" *ngFor="let job of jobs">
+        <mat-card-title>
+          {{ job.title }}
+        </mat-card-title>
 
-        <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
-          Elimina
-        </button>
-      </div>
+        <mat-card-subtitle>
+          📍 {{ job.location }} | 🏢 {{ job.companyId?.companyName }}
+        </mat-card-subtitle>
+
+        <mat-card-content>
+          <p>{{ job.description }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
+            Elimina
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </mat-card>
 </div>

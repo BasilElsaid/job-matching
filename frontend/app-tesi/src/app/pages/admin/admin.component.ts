@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { CompanyService } from '../../core/services/company.service';
+import { User } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +15,7 @@ import { CompanyService } from '../../core/services/company.service';
 })
 export class AdminComponent implements OnInit {
   jobs: Job[] = [];
-  companies: any[] = [];
+  companies: User[] = [];
 
   constructor(
     private jobService: JobService,
@@ -26,20 +27,49 @@ export class AdminComponent implements OnInit {
   }
 
   loadData() {
-    this.jobService.getJobs().subscribe((data) => {
-      this.jobs = data;
+    this.jobService.getJobs().subscribe({
+      next: (data) => {
+        this.jobs = data;
+      },
+      error: (err) => {
+        console.error('Errore caricamento jobs:', err);
+      }
     });
 
-    this.companies = this.companyService.getCompanies();
+    this.companyService.getCompanies().subscribe({
+      next: (data) => {
+        this.companies = data;
+      },
+      error: (err) => {
+        console.error('Errore caricamento aziende:', err);
+      }
+    });
   }
 
   deleteJob(id: string) {
-    this.jobService.deleteJob(id);
-    this.loadData();
+    if (!confirm('Sei sicuro di voler eliminare questo annuncio?')) return;
+
+    this.jobService.deleteJob(id).subscribe({
+      next: () => {
+        this.loadData();
+      },
+      error: (err) => {
+        console.error('Errore eliminazione:', err);
+        alert('Errore durante l’eliminazione');
+      }
+    });
   }
 
-  deleteCompany() {
-    this.companyService.deleteCompany();
-    this.loadData();
+  deleteCompany(id: string) {
+    if (!confirm('Sei sicuro di voler eliminare questa azienda?')) return;
+
+    this.companyService.deleteCompany(id).subscribe({
+      next: () => {
+        this.loadData();
+      },
+      error: (err) => {
+        console.error('Errore eliminazione azienda:', err);
+      }
+    });
   }
 }

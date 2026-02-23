@@ -7,33 +7,52 @@
   gap: 2rem;
 }
 
-.admin-card {
-  padding: 2rem;
-  border-radius: 16px;
-}
-
 .admin-section {
   padding: 2rem;
   border-radius: 16px;
 }
 
-.admin-job {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
+/* ================= GRID GENERICA ================= */
+
+.admin-jobs-grid,
+.admin-users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-.actions {
-  display: flex;
-  gap: 1rem;
+/* ================= CARD GENERICA (USATA DA ENTRAMBI) ================= */
+
+.admin-job-card,
+.admin-user-card {
+  border-radius: 16px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-.admin-company {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
+.admin-job-card:hover,
+.admin-user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ================= TITOLI ================= */
+
+.admin-job-card mat-card-title,
+.admin-user-card mat-card-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.admin-job-card mat-card-subtitle,
+.admin-user-card mat-card-subtitle {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ================= BUTTON SECTION ================= */
+
+mat-card-actions {
+  margin-top: 1rem;
 }

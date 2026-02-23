@@ -5,10 +5,17 @@ import { CommonModule } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { RouterModule } from '@angular/router';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatCardModule, MatButtonModule, RouterModule, CommonModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    RouterModule,
+    CommonModule,
+    MatDivider,
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
@@ -30,20 +37,27 @@ export class DashboardComponent implements OnInit {
   }
 
   loadMyJobs() {
-    this.jobService.getJobs().subscribe((jobs) => {
-      // 🔥 FILTRIAMO PER AZIENDA (temporaneo)
-      this.myJobs = jobs.filter(
-        (job) => job.companyId?.companyName === this.company.name,
-      );
+    this.jobService.getMyJobs().subscribe({
+      next: (jobs) => {
+        this.myJobs = jobs;
+      },
+      error: (err) => {
+        console.error('Errore caricamento annunci:', err);
+      },
     });
   }
 
   deleteJob(id: string) {
-    this.jobService.deleteJob(id);
-    this.loadMyJobs();
-  }
+    if (!confirm('Sei sicuro di voler eliminare questo annuncio?')) return;
 
-  editJob(job: Job) {
-    console.log('Edit job:', job);
+    this.jobService.deleteJob(id).subscribe({
+      next: () => {
+        this.loadMyJobs();
+      },
+      error: (err) => {
+        console.error('Errore eliminazione:', err);
+        alert('Errore durante l’eliminazione');
+      },
+    });
   }
 }

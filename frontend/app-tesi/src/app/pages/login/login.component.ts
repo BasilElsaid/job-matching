@@ -40,20 +40,20 @@ export class LoginComponent {
     });
   }
 
-onSubmit() {
-  if (this.loginForm.invalid) return;
+  onSubmit() {
+    if (this.loginForm.invalid) return;
 
-  this.authService.loginApi(this.loginForm.value).subscribe({
-    next: (res) => {
-      console.log("LOGIN RESPONSE:", res);
+    this.authService.loginApi(this.loginForm.value).subscribe({
+      next: (res) => {
+        console.log('LOGIN RESPONSE:', res);
 
-      this.authService.login(res);
-    },
-    error: (err) => {
-      console.error("Login fallito", err);
-    }
-  });
-}
+        this.authService.login(res);
+      },
+      error: (err) => {
+        console.error('Login fallito', err);
+      },
+    });
+  }
 
   logout() {
     this.authService.logout();

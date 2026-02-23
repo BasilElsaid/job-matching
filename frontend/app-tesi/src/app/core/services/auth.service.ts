@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
-export type UserRole = 'guest' | 'company' | 'admin';
+export type UserRole = 'guest' | 'COMPANY' | 'ADMIN';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(private http: HttpClient) {}
   // 🔥 LEGGIAMO SUBITO DAL LOCALSTORAGE
   private _isAuthenticated = signal<boolean>(
@@ -21,24 +20,28 @@ export class AuthService {
   isAuthenticated = this._isAuthenticated.asReadonly();
   role = this._role.asReadonly();
 
-
   loginApi(credentials: { email: string; password: string }) {
     return this.http.post<any>('http://localhost:3000/auth/login', credentials);
   }
 
-  login(response: any, role: UserRole = 'company') {
+  login(response: any) {
+    console.log('LOGIN SALVATAGGIO TOKEN:', response);
 
-    console.log("LOGIN SALVATAGGIO TOKEN:", response);
+    if (!response?.access_token) return;
+
+    const token = response.access_token;
+
+    // 🔥 Decodifica il token per leggere il ruolo reale
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    const role = payload.role as UserRole;
 
     this._isAuthenticated.set(true);
     this._role.set(role);
 
     localStorage.setItem('auth', 'true');
     localStorage.setItem('role', role);
-
-    if (response?.access_token) {
-      localStorage.setItem('token', response.access_token);
-    }
+    localStorage.setItem('token', token);
   }
 
   logout() {
@@ -54,10 +57,10 @@ export class AuthService {
   }
 
   isAdmin() {
-    return this._isAuthenticated() && this._role() === 'admin';
+    return this._isAuthenticated() && this._role() === 'ADMIN';
   }
 
   isCompany() {
-    return this._isAuthenticated() && this._role() === 'company';
+    return this._isAuthenticated() && this._role() === 'COMPANY';
   }
 }

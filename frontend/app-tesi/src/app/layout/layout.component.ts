@@ -21,14 +21,22 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
+
   constructor(
     public authService: AuthService,
     public router: Router,
   ) {}
 
+  get isAdmin() {
+  return this.authService.role;
+  }
+
+  get isAuth() {
+    return this.authService.isAuthenticated;
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['']);
   }
-
 }

@@ -34,7 +34,7 @@ export const routes: Routes = [
             (m) => m.CreateJobComponent,
           ),
         canActivate: [roleGuard],
-        data: { role: 'company' },
+        data: { role: 'COMPANY' },
       },
 
       {
@@ -48,7 +48,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/admin/admin.component').then((m) => m.AdminComponent),
         canActivate: [roleGuard],
-        data: { role: 'admin' },
+        data: { role: 'ADMIN' },
       },
 
       {
@@ -66,7 +66,7 @@ export const routes: Routes = [
             (m) => m.DashboardComponent,
           ),
         canActivate: [roleGuard],
-        data: { role: 'company' },
+        data: { role: 'COMPANY' },
       },
 
       {
