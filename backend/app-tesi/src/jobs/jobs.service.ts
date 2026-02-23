@@ -22,7 +22,7 @@ export class JobsService {
 
   async findAll() {
     return this.jobModel
-      .find({ active: true })
+      .find({ status: 'APPROVED' })
       .populate('companyId', 'companyName email phone')
       .exec();
   }
@@ -53,6 +53,21 @@ export class JobsService {
   async findOne(id: string) {
     return this.jobModel
       .findById(id)
+      .populate('companyId', 'companyName companyEmail companyPhone')
+      .exec();
+  }
+
+  approve(id: string) {
+    return this.jobModel.findByIdAndUpdate(
+      id,
+      { status: 'APPROVED' },
+      { new: true },
+    );
+  }
+
+  async findAllForAdmin() {
+    return this.jobModel
+      .find()
       .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
   }

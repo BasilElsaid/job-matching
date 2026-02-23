@@ -30,4 +30,28 @@ export class JobService {
   deleteJob(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  approveJob(id: string) {
+    const token = localStorage.getItem('token');
+
+    return this.http.patch(
+      `${this.apiUrl}/${id}/approve`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+  }
+
+  getAllJobsForAdmin(): Observable<Job[]> {
+    const token = localStorage.getItem('token');
+
+    return this.http.get<Job[]>(`${this.apiUrl}/all`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }

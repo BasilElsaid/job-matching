@@ -47,6 +47,15 @@
           {{ job.title }}
         </mat-card-title>
 
+        <p
+          [ngStyle]="{
+            color: job.status === 'PENDING' ? '#ff9800' : '#4caf50',
+            fontWeight: '600',
+          }"
+        >
+          {{ job.status }}
+        </p>
+
         <mat-card-subtitle>
           📍 {{ job.location }} | 🏢 {{ job.companyId?.companyName }}
         </mat-card-subtitle>
@@ -56,6 +65,15 @@
         </mat-card-content>
 
         <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="primary"
+            *ngIf="job.status === 'PENDING'"
+            (click)="approveJob(job._id)"
+          >
+            Approva
+          </button>
+
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
             Elimina
           </button>

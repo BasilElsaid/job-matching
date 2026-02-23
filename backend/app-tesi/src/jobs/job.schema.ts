@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
 export type JobDocument = Job & Document;
+export type JobStatus = 'PENDING' | 'APPROVED';
 
 @Schema({ timestamps: true })
 export class Job {
@@ -23,6 +24,12 @@ export class Job {
 
   @Prop({ default: true })
   active: boolean;
+
+  @Prop({
+    enum: ['PENDING', 'APPROVED'],
+    default: 'PENDING',
+  })
+  status: JobStatus;
 }
 
 export const JobSchema = SchemaFactory.createForClass(Job);

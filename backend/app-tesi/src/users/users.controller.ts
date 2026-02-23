@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, UseGuards, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Req,
+  Delete,
+  Param,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './create-user.dto';
 import { Roles } from 'src/auth/roles.decorator';
@@ -25,5 +34,12 @@ export class UsersController {
   @Get('me')
   getProfile(@Req() req) {
     return req.user;
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
+  @Delete(':id')
+  deleteUser(@Param('id') id: string) {
+    return this.usersService.delete(id);
   }
 }

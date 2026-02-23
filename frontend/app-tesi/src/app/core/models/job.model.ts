@@ -1,3 +1,5 @@
+export type JobStatus = 'PENDING' | 'APPROVED';
+
 export interface Job {
   _id: string;
   title: string;
@@ -6,6 +8,7 @@ export interface Job {
   type: string;
   createdAt?: Date;
   updatedAt?: Date;
+  status: JobStatus;
 
   // 🔥 populate restituisce l'utente azienda qui
   companyId?: {

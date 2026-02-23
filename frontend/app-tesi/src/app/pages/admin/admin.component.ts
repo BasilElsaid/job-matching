@@ -27,13 +27,13 @@ export class AdminComponent implements OnInit {
   }
 
   loadData() {
-    this.jobService.getJobs().subscribe({
+    this.jobService.getAllJobsForAdmin().subscribe({
       next: (data) => {
         this.jobs = data;
       },
       error: (err) => {
         console.error('Errore caricamento jobs:', err);
-      }
+      },
     });
 
     this.companyService.getCompanies().subscribe({
@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
       },
       error: (err) => {
         console.error('Errore caricamento aziende:', err);
-      }
+      },
     });
   }
 
@@ -56,7 +56,7 @@ export class AdminComponent implements OnInit {
       error: (err) => {
         console.error('Errore eliminazione:', err);
         alert('Errore durante l’eliminazione');
-      }
+      },
     });
   }
 
@@ -69,7 +69,18 @@ export class AdminComponent implements OnInit {
       },
       error: (err) => {
         console.error('Errore eliminazione azienda:', err);
-      }
+      },
+    });
+  }
+
+  approveJob(id: string) {
+    this.jobService.approveJob(id).subscribe({
+      next: () => {
+        this.loadData();
+      },
+      error: (err) => {
+        console.error('Errore approvazione:', err);
+      },
     });
   }
 }
