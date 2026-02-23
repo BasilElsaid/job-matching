@@ -1,65 +1,103 @@
 # Platform Aziende – Sistema SPA per la Gestione di Annunci di Lavoro
 
-## 📌 Descrizione del Progetto
+## Descrizione
 
-Questo progetto rappresenta un'applicazione web sviluppata come caso di studio per il confronto tra architetture **Single Page Application (SPA)** e **Multi Page Application (MPA)**.
+Applicazione web sviluppata come caso di studio per l’analisi dell’architettura **Single Page Application (SPA)**.
 
-L'applicazione è stata realizzata concretamente seguendo il paradigma SPA utilizzando:
+La piattaforma permette alle aziende di pubblicare annunci di lavoro e agli studenti di consultarli.
 
-- Angular (Frontend)
-- NestJS (Backend)
-- MongoDB (Database)
+Tecnologie utilizzate:
 
-Il sistema funziona come piattaforma di intermediazione tra aziende e studenti, permettendo la pubblicazione e la consultazione di annunci di lavoro.
+- **Frontend:** Angular + Angular Material  
+- **Backend:** NestJS  
+- **Database:** MongoDB  
 
 ---
 
-## 🎯 Obiettivo
+## Obiettivi
 
-L'obiettivo del progetto è:
-
-- Analizzare concretamente l'architettura SPA
-- Implementare un sistema reale con autenticazione e gestione ruoli
-- Mostrare operazioni CRUD su entità aziendali e annunci
+- Implementare un sistema SPA completo
 - Integrare frontend e backend tramite API REST
-- Utilizzare un database NoSQL per la persistenza dei dati
+- Gestire autenticazione con JWT
+- Implementare controllo accessi basato su ruoli (RBAC)
+- Realizzare operazioni CRUD su aziende e annunci
 
 ---
 
-## 🏗 Architettura
+## Architettura
 
-Il progetto segue un'architettura **client-server separata**:
+Il progetto segue un’architettura **client-server separata**.
 
 ### Frontend
 - Angular
-- Angular Material
 - Routing lato client
-- Comunicazione con API REST tramite HTTP
-- Gestione autenticazione con JWT
+- Reactive Forms
+- HTTP Client
+- Protezione rotte con Auth Guard
 
 ### Backend
 - NestJS
 - API REST
-- Autenticazione con JWT
-- Autorizzazione basata su ruoli
-- Validazione dati
-- Integrazione con MongoDB tramite ODM (Mongoose)
+- Autenticazione JWT
+- Autorizzazione per ruoli (ADMIN, COMPANY, STUDENT)
+- Validazione DTO
+- Mongoose per MongoDB
 
 ### Database
 - MongoDB
-- Persistenza di:
-  - Aziende
-  - Utenti
-  - Annunci
-  - Ruoli
+- Collezioni principali:
+  - Users
+  - Jobs
 
 ---
 
-## 🚀 Come Avviare il Progetto
+## Sistema Ruoli
 
-### 1️⃣ Backend
+### Admin
+- Visualizza aziende
+- Approva o elimina annunci
+- Elimina aziende
+
+### Azienda
+- Gestisce il proprio profilo
+- Crea ed elimina annunci
+- Visualizza stato annunci (PENDING / APPROVED)
+
+### Guest/Studente
+- Visualizza annunci approvati
+
+---
+
+## Avvio del Progetto
+
+### Backend
 
 ```bash
 cd backend/app-tesi
 npm install
 npm run start:dev
+```
+
+Backend disponibile su:
+
+http://localhost:3000
+
+---
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+ng serve
+```
+
+Frontend disponibile su:
+
+http://localhost:4200
+
+---
+
+## Finalità Accademica
+
+Il progetto è stato sviluppato come caso di studio per la tesi triennale in Informatica per analizzare concretamente il funzionamento e i vantaggi dell’architettura SPA rispetto a una MPA tradizionale.
