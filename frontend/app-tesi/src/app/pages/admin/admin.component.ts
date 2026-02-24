@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
-import { Job } from '../../core/models/job.model';
+import { Job, JobStatus } from '../../core/models/job.model';
 import { CompanyService } from '../../core/services/company.service';
 import { User } from '../../core/models/user.model';
 
@@ -20,6 +20,10 @@ import { User } from '../../core/models/user.model';
 export class AdminComponent implements OnInit {
   jobs: JobWithUI[] = [];
   companies: User[] = [];
+  statusMap: Record<JobStatus, string> = {
+    PENDING: 'In Attesa',
+    APPROVED: 'Approvato',
+  };
 
   constructor(
     private jobService: JobService,

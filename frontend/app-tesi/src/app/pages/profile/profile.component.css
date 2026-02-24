@@ -1,4 +1,4 @@
-.create-container {
+.profile-container {
   max-width: 800px;
   margin: 3rem auto;
   padding: 1.5rem;
@@ -7,12 +7,13 @@
   gap: 2rem;
 }
 
-.create-card {
+.profile-card {
   padding: 2rem;
   border-radius: 20px;
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 1rem;
+.danger-zone {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
 }

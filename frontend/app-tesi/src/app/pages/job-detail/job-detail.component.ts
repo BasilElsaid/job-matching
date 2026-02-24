@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { DatePipe, NgIf } from '@angular/common';
@@ -9,7 +9,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-job-detail',
-  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, MatDividerModule],
+  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, MatDividerModule, RouterLink],
   templateUrl: './job-detail.component.html',
   styleUrl: './job-detail.component.css',
 })

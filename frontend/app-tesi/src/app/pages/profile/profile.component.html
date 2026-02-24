@@ -1,0 +1,21 @@
+<div class="profile-container">
+  <button mat-button routerLink="/dashboard">← Torna alla Dashboard</button>
+
+  <mat-card class="profile-card">
+    <h2>{{ company.companyName }}</h2>
+
+    <p><strong>Email Login:</strong> {{ company.email }}</p>
+
+    <p><strong>Email Aziendale:</strong> {{ company.companyEmail }}</p>
+    <p><strong>Telefono Aziendale:</strong> {{ company.companyPhone }}</p>
+    <p><strong>Indirizzo Aziendale:</strong> {{ company.companyAddress }}</p>
+
+    <mat-divider></mat-divider>
+
+    <div class="danger-zone">
+      <button mat-raised-button color="warn" (click)="deleteProfile()">
+        Elimina Profilo
+      </button>
+    </div>
+  </mat-card>
+</div>

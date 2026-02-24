@@ -4,7 +4,7 @@
   <!-- ================== AZIENDE ================== -->
 
   <mat-card class="admin-section">
-    <h3>🏢 Aziende Registrate</h3>
+    <h3>Aziende Registrate</h3>
 
     <div *ngIf="companies.length === 0">Nessuna Azienda Registrata.</div>
 
@@ -14,9 +14,10 @@
           {{ company.companyName }}
         </mat-card-title>
 
-        <mat-card-subtitle> 📧 {{ company.companyEmail }} </mat-card-subtitle>
+        <mat-card-subtitle>Email Login: {{ company.email }} </mat-card-subtitle>
 
         <mat-card-content>
+          <p>📧 {{ company.companyEmail }}</p>
           <p>📞 {{ company.companyPhone }}</p>
           <p>📍 {{ company.companyAddress }}</p>
         </mat-card-content>
@@ -37,7 +38,7 @@
   <!-- ================== JOBS ================== -->
 
   <mat-card class="admin-section">
-    <h3>📌 Annunci Disponibili</h3>
+    <h3>Annunci Disponibili</h3>
 
     <div *ngIf="jobs.length === 0">Nessun Annuncio Disponibile.</div>
 
@@ -53,11 +54,11 @@
             fontWeight: '600',
           }"
         >
-          {{ job.status }}
+          {{ statusMap[job.status] }}
         </p>
 
         <mat-card-subtitle>
-          📍 {{ job.location }} | 🏢 {{ job.companyId?.companyName }}
+          📍 {{ job.location }} | {{ job.companyId?.companyName }}
         </mat-card-subtitle>
 
         <mat-card-content>

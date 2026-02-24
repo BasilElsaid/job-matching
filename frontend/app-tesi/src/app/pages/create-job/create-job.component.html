@@ -1,4 +1,6 @@
 <div class="create-container">
+  <button mat-button routerLink="/dashboard">← Torna alla Dashboard</button>
+
   <mat-card class="create-card">
     <h2>Crea annuncio di lavoro</h2>
 
@@ -25,16 +27,16 @@
 
       <!-- INFO AZIENDA -->
       <div class="company-info">
-        <h3>📌 Dati Aziendali (presi dal profilo)</h3>
+        <h3>Dati Aziendali (presi dal profilo)</h3>
 
         <p>
-          📩 Email Aziendale:
-          <strong>Preso automaticamente dal profilo azienda</strong>
+          📧 Email Aziendale:
+          <strong>{{ company?.companyEmail }}</strong>
         </p>
 
         <p>
           📞 Telefono Aziendale:
-          <strong>Preso automaticamente dal profilo azienda</strong>
+          <strong>{{ company?.companyPhone }}</strong>
         </p>
       </div>
 

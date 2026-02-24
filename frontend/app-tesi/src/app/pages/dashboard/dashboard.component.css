@@ -61,7 +61,8 @@
 
 .dashboard-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ================= JOB SECTION ================= */
@@ -142,11 +143,11 @@
 }
 
 /* 🟡 PENDING */
-.status-badge.pending {
+.status-badge.PENDING {
   background-color: #ff9800;
 }
 
 /* 🟢 APPROVED */
-.status-badge.approved {
+.status-badge.APPROVED {
   background-color: #4caf50;
 }

@@ -2,8 +2,10 @@
   <!-- ACTION BUTTON -->
   <div class="dashboard-actions">
     <button mat-raised-button color="primary" routerLink="/create-job">
-      ➕ Crea Nuovo Annuncio
+      Crea Nuovo Annuncio
     </button>
+
+    <button mat-stroked-button routerLink="/profile">Profilo Azienda</button>
   </div>
 
   <!-- HEADER -->
@@ -16,24 +18,24 @@
   <!-- INFO GRID -->
   <div class="dashboard-grid">
     <mat-card class="info-card">
-      <h3>📧 Email Aziendale</h3>
+      <h3>Email Aziendale</h3>
       <p>{{ company.companyEmail }}</p>
     </mat-card>
 
     <mat-card class="info-card">
-      <h3>📞 Telefono</h3>
+      <h3>Telefono</h3>
       <p>{{ company.companyPhone }}</p>
     </mat-card>
 
     <mat-card class="info-card">
-      <h3>📍 Indirizzo</h3>
+      <h3>Indirizzo</h3>
       <p>{{ company.companyAddress }}</p>
     </mat-card>
   </div>
 
   <!-- MY JOBS -->
   <mat-card class="jobs-section">
-    <h2>📌 Miei Annunci</h2>
+    <h2>Miei Annunci</h2>
 
     <div *ngIf="myJobs.length === 0">Nessun Annuncio creato ancora.</div>
 
@@ -43,7 +45,7 @@
         <div class="card-header">
           <div>
             <mat-card-title>{{ job.title }}</mat-card-title>
-            <mat-card-subtitle> 📍 {{ job.location }} </mat-card-subtitle>
+            <mat-card-subtitle> {{ job.location }} </mat-card-subtitle>
           </div>
 
           <div class="header-right">
@@ -54,11 +56,11 @@
             <div
               class="status-badge"
               [ngClass]="{
-                pending: job.status === 'PENDING',
-                approved: job.status === 'APPROVED',
+                PENDING: job.status === 'PENDING',
+                APPROVED: job.status === 'APPROVED',
               }"
             >
-              {{ job.status }}
+              {{ statusMap[job.status] }}
             </div>
           </div>
         </div>
@@ -66,7 +68,7 @@
         <!-- BODY -->
         <mat-card-content>
           <div class="meta-info">
-            📅 Pubblicato:
+            Pubblicato:
             {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
           </div>
 
@@ -81,7 +83,7 @@
         <!-- ACTION -->
         <mat-card-actions class="contact-section">
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
-            🗑 Elimina Annuncio
+            Elimina Annuncio
           </button>
         </mat-card-actions>
       </mat-card>

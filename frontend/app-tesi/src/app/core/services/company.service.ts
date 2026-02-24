@@ -34,4 +34,8 @@ export class CompanyService {
       },
     });
   }
+
+  deleteMe() {
+    return this.http.delete(`${this.apiUrl}/companies/me`);
+  }
 }
