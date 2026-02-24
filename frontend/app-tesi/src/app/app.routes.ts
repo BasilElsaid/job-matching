@@ -80,6 +80,16 @@ export const routes: Routes = [
       },
 
       {
+        path: 'profile-edit',
+        loadComponent: () =>
+          import('./pages/profile-edit/profile-edit.component').then(
+            (m) => m.ProfileEditComponent,
+          ),
+        canActivate: [roleGuard],
+        data: { role: 'COMPANY' },
+      },
+
+      {
         path: '**',
         redirectTo: '',
       },

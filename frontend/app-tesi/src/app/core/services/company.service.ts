@@ -38,4 +38,14 @@ export class CompanyService {
   deleteMe() {
     return this.http.delete(`${this.apiUrl}/companies/me`);
   }
+
+  updateMe(data: any) {
+    const token = localStorage.getItem('token');
+
+    return this.http.patch<User>('http://localhost:3000/users/me', data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }

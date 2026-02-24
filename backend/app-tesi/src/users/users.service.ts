@@ -5,6 +5,7 @@ import { User, UserDocument } from './user.schema';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './create-user.dto';
 import { Job } from '../jobs/job.schema';
+import { UpdateUserDto } from './update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -56,5 +57,41 @@ export class UsersService {
 
   async findById(id: string) {
     return this.userModel.findById(id).select('-password').exec();
+  }
+
+  async updateProfile(id: string, data: UpdateUserDto) {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('User non trovato');
+    }
+
+    // 🔥 Aggiorniamo solo campi aziendali
+    if (data.companyEmail !== undefined) {
+      user.companyEmail = data.companyEmail;
+    }
+
+    if (data.companyPhone !== undefined) {
+      user.companyPhone = data.companyPhone;
+    }
+
+    if (data.companyAddress !== undefined) {
+      user.companyAddress = data.companyAddress;
+    }
+
+    await user.save();
+
+    // 🚀 🔥 AGGIORNA TUTTI GLI ANNUNCI DELL'AZIENDA
+    await this.jobModel.updateMany(
+      { companyId: id },
+      {
+        $set: {
+          contactEmail: user.companyEmail,
+          contactPhone: user.companyPhone,
+        },
+      },
+    );
+
+    return { message: 'Profilo aggiornato e annunci sincronizzati ✅' };
   }
 }

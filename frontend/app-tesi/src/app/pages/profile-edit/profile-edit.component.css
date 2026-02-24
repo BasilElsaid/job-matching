@@ -1,13 +1,13 @@
-.create-container {
+.profile-container {
   max-width: 800px;
   margin: 3rem auto;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.create-card {
+.register-card {
   padding: 2rem;
   border-radius: 20px;
 }
@@ -15,6 +15,18 @@
 .full-width {
   width: 100%;
   margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.actions-row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .warning-box {

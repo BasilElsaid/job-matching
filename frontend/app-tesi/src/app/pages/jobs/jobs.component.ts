@@ -5,7 +5,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { JobService } from '../../core/services/job.service';
 import { Job } from '../../core/models/job.model';
 import { RouterModule } from '@angular/router';
-import { ApiService } from '../../core/services/api.service';
+import { CompanyService } from '../../core/services/company.service';
 
 @Component({
   selector: 'app-jobs',
@@ -25,13 +25,12 @@ export class JobsComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private api: ApiService,
   ) {}
 
   ngOnInit() {
     console.log('🟢 COMPONENTE CARICATO');
 
-    this.api.getJobs().subscribe({
+    this.jobService.getJobs().subscribe({
       next: (res: any) => {
         console.log('🔥 JOBS:', res);
 

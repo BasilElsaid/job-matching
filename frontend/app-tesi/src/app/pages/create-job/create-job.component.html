@@ -4,6 +4,12 @@
   <mat-card class="create-card">
     <h2>Crea annuncio di lavoro</h2>
 
+    <div class="warning-box">
+      Attenzione: dopo la pubblicazione dell'annuncio, sarà necessario attendere
+      l'approvazione dell'amministratore prima che venga visibile nella sezione
+      degli annunci pubblici.
+    </div>
+
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Titolo Lavoro</mat-label>

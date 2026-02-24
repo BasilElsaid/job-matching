@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
 
   deleteProfile() {
     const confirmDelete = confirm(
-      'Sei sicuro di voler eliminare il profilo? Questa azione è irreversibile.'
+      'Sei sicuro di voler eliminare il profilo? Tutti gli annunci vostri verrano eliminati di conseguenza.'
     );
 
     if (!confirmDelete) return;

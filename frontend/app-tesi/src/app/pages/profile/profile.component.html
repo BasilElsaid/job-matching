@@ -12,7 +12,11 @@
 
     <mat-divider></mat-divider>
 
-    <div class="danger-zone">
+    <div class="actions-row">
+      <button mat-stroked-button color="primary" routerLink="/profile-edit">
+        Modifica Profilo
+      </button>
+
       <button mat-raised-button color="warn" (click)="deleteProfile()">
         Elimina Profilo
       </button>
