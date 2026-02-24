@@ -58,7 +58,7 @@ export class UsersService {
   async findById(id: string) {
     return this.userModel.findById(id).select('-password').exec();
   }
-
+  /*
   async updateProfile(id: string, data: UpdateUserDto) {
     const user = await this.userModel.findById(id);
 
@@ -92,6 +92,53 @@ export class UsersService {
       },
     );
 
-    return { message: 'Profilo aggiornato e annunci sincronizzati ✅' };
+    return { message: 'Profilo aggiornato e annunci sincronizzati' };
+  }
+*/
+  async updateProfile(id: string, data: UpdateUserDto) {
+    const user = await this.userModel.findById(id);
+
+    if (!user) {
+      throw new NotFoundException('User non trovato');
+    }
+
+    user.pendingProfileUpdate = {
+      companyEmail: data.companyEmail,
+      companyPhone: data.companyPhone,
+      companyAddress: data.companyAddress,
+    };
+
+    user.profileUpdatePending = true;
+
+    return user.save();
+  }
+
+  async approveProfileUpdate(id: string) {
+    const user = await this.userModel.findById(id);
+
+    if (!user || !user.pendingProfileUpdate) {
+      throw new NotFoundException('Nessuna modifica in attesa');
+    }
+
+    user.companyEmail = user.pendingProfileUpdate.companyEmail;
+    user.companyPhone = user.pendingProfileUpdate.companyPhone;
+    user.companyAddress = user.pendingProfileUpdate.companyAddress;
+
+    user.profileUpdatePending = false;
+
+    return user.save();
+  }
+
+  async rejectProfileUpdate(userId: string) {
+    const user = await this.userModel.findById(userId);
+
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    user.pendingProfileUpdate = undefined;
+    user.profileUpdatePending = false;
+
+    return user.save();
   }
 }

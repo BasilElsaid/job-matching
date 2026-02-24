@@ -63,3 +63,50 @@ mat-card-actions {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ================= COMPARE SECTION ================= */
+
+.compare-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 10px;
+  align-items: start;
+}
+
+.compare-block div {
+  min-width: 0;
+}
+
+.compare-block small {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.compare-block p {
+  margin: 4px 0 0 0;
+  word-break: break-word;
+}
+
+.pending-value {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.compare-block p {
+  margin: 2px 0;
+}
+
+.pending-value {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+.pending-label {
+  color: #999;
+  font-size: 12px;
+}

@@ -24,3 +24,25 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.profile-status {
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background-color: #ff9800;
+  color: white;
+}
+
+.status-badge.approved {
+  background-color: #4caf50;
+  color: white;
+}

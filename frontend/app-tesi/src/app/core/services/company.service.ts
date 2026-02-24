@@ -48,4 +48,30 @@ export class CompanyService {
       },
     });
   }
+
+  approveProfile(id: string) {
+    return this.http.patch(
+      `http://localhost:3000/users/${id}/approve-profile`,
+      {},
+      this.authHeader(),
+    );
+  }
+
+  rejectProfile(id: string) {
+    return this.http.patch(
+      `http://localhost:3000/users/${id}/reject-profile`,
+      {},
+      this.authHeader(),
+    );
+  }
+
+  private authHeader() {
+    const token = localStorage.getItem('token');
+
+    return {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  }
 }

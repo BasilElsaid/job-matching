@@ -28,6 +28,22 @@ export class User {
 
   @Prop()
   companyAddress?: string;
+
+  @Prop({ type: Boolean, default: false })
+  profileUpdatePending: boolean;
+
+  @Prop({
+    type: {
+      companyEmail: String,
+      companyPhone: String,
+      companyAddress: String,
+    },
+  })
+  pendingProfileUpdate?: {
+    companyEmail?: string;
+    companyPhone?: string;
+    companyAddress?: string;
+  };
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

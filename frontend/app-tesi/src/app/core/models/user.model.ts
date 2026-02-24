@@ -13,4 +13,12 @@ export interface User {
 
   createdAt?: Date;
   updatedAt?: Date;
+
+  pendingProfileUpdate?: {
+    companyEmail?: string;
+    companyPhone?: string;
+    companyAddress?: string;
+  };
+
+  profileUpdatePending?: boolean;
 }

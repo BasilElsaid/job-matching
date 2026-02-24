@@ -20,6 +20,7 @@ import { User } from '../../core/models/user.model';
 export class AdminComponent implements OnInit {
   jobs: JobWithUI[] = [];
   companies: User[] = [];
+  companiesWithPending: User[] = [];
   statusMap: Record<JobStatus, string> = {
     PENDING: 'In Attesa',
     APPROVED: 'Approvato',
@@ -35,6 +36,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadData() {
+    // JOBS
     this.jobService.getAllJobsForAdmin().subscribe({
       next: (data) => {
         this.jobs = data;
@@ -44,9 +46,15 @@ export class AdminComponent implements OnInit {
       },
     });
 
+    // COMPANIES
     this.companyService.getCompanies().subscribe({
       next: (data) => {
         this.companies = data;
+
+        // 🔥 FILTRIAMO SOLO QUELLE CON MODIFICHE IN ATTESA
+        this.companiesWithPending = data.filter(
+          (company) => company.profileUpdatePending === true,
+        );
       },
       error: (err) => {
         console.error('Errore caricamento aziende:', err);
@@ -94,5 +102,17 @@ export class AdminComponent implements OnInit {
 
   toggleDescription(job: JobWithUI) {
     job.expanded = !job.expanded;
+  }
+
+  approveProfile(id: string) {
+    this.companyService.approveProfile(id).subscribe({
+      next: () => this.loadData(),
+    });
+  }
+
+  rejectProfile(id: string) {
+    this.companyService.rejectProfile(id).subscribe({
+      next: () => this.loadData(),
+    });
   }
 }

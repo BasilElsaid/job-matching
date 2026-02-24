@@ -51,4 +51,18 @@ export class UsersController {
   updateMe(@Req() req, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.updateProfile(req.user.userId, updateUserDto);
   }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
+  @Patch(':id/approve-profile')
+  approveProfile(@Param('id') id: string) {
+    return this.usersService.approveProfileUpdate(id);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('ADMIN')
+  @Patch(':id/reject-profile')
+  rejectProfile(@Param('id') id: string) {
+    return this.usersService.rejectProfileUpdate(id);
+  }
 }

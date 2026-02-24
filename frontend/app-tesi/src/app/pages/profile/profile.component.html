@@ -1,7 +1,24 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="company">
   <button mat-button routerLink="/dashboard">← Torna alla Dashboard</button>
 
   <mat-card class="profile-card">
+    <!-- 🔥 STATUS PROFILO -->
+    <div class="profile-status">
+      <span
+        class="status-badge"
+        [ngClass]="{
+          pending: company.profileUpdatePending,
+          approved: !company.profileUpdatePending,
+        }"
+      >
+        {{
+          company.profileUpdatePending
+            ? "Modifiche in attesa di approvazione"
+            : "Profilo aggiornato"
+        }}
+      </span>
+    </div>
+
     <h2>{{ company.companyName }}</h2>
 
     <p><strong>Email Login:</strong> {{ company.email }}</p>

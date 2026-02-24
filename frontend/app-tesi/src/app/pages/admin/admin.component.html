@@ -35,6 +35,94 @@
     </div>
   </mat-card>
 
+  <!-- ================== PROFILE MODIFICATIONS ================== -->
+
+  <mat-card class="admin-section">
+    <h3>Modifiche Profilo In Attesa</h3>
+
+    <div *ngIf="companiesWithPending.length === 0">
+      Nessuna modifica profilo in attesa.
+    </div>
+
+    <div class="admin-users-grid">
+      <mat-card
+        class="admin-user-card"
+        *ngFor="let company of companiesWithPending"
+      >
+        <mat-card-title>
+          {{ company.companyName }}
+        </mat-card-title>
+
+        <mat-card-content>
+          <div class="comparison">
+            <!-- EMAIL -->
+            <div class="compare-block">
+              <div>
+                <small>Attuale</small>
+                <p>{{ company.companyEmail }}</p>
+              </div>
+
+              <div *ngIf="company.pendingProfileUpdate?.companyEmail">
+                <small class="pending-label">Nuova</small>
+                <p class="pending-value">
+                  {{ company.pendingProfileUpdate?.companyEmail }}
+                </p>
+              </div>
+            </div>
+
+            <!-- TELEFONO -->
+            <div class="compare-block">
+              <div>
+                <small>Attuale</small>
+                <p>{{ company.companyPhone }}</p>
+              </div>
+
+              <div *ngIf="company.pendingProfileUpdate?.companyPhone">
+                <small class="pending-label">Nuova</small>
+                <p class="pending-value">
+                  {{ company.pendingProfileUpdate?.companyPhone }}
+                </p>
+              </div>
+            </div>
+
+            <!-- INDIRIZZO -->
+            <div class="compare-block">
+              <div>
+                <small>Attuale</small>
+                <p>{{ company.companyAddress }}</p>
+              </div>
+
+              <div *ngIf="company.pendingProfileUpdate?.companyAddress">
+                <small class="pending-label">Nuova</small>
+                <p class="pending-value">
+                  {{ company.pendingProfileUpdate?.companyAddress }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="approveProfile(company._id)"
+          >
+            Approva
+          </button>
+
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="rejectProfile(company._id)"
+          >
+            Rifiuta
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+
   <!-- ================== JOBS ================== -->
 
   <mat-card class="admin-section">
