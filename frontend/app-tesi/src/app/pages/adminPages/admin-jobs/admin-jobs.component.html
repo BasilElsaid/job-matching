@@ -25,8 +25,20 @@
         </p>
 
         <mat-card-subtitle>
-          📍 {{ job.location }} |
-          {{ job.companyId?.companyName }}
+          📍 {{ job.location }} | {{ job.companyId?.companyName }}
+        </mat-card-subtitle>
+
+        <mat-card-subtitle>
+          {{ job.type }}
+        </mat-card-subtitle>
+
+        <mat-card-subtitle>
+          <div class="meta-info">
+            <span>
+              Pubblicato:
+              {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
+            </span>
+          </div>
         </mat-card-subtitle>
 
         <mat-card-content>
@@ -47,6 +59,21 @@
             {{ job.expanded ? "Mostra meno" : "Mostra altro" }}
           </button>
         </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <!-- CONTACT -->
+        <mat-card-actions class="contact-section">
+          <p *ngIf="job.companyId?.companyEmail">
+            📧 {{ job.companyId?.companyEmail }}
+          </p>
+
+          <p *ngIf="job.companyId?.companyPhone">
+            📞 {{ job.companyId?.companyPhone }}
+          </p>
+        </mat-card-actions>
+
+        <mat-divider></mat-divider>
 
         <mat-card-actions>
           <button

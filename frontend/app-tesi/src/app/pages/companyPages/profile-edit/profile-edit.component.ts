@@ -85,6 +85,7 @@ export class ProfileEditComponent implements OnInit {
         this.router.navigate(['company/profile']);
       },
       error: (err) => {
+        alert('Errore nella richiesta');
         console.error('Errore aggiornamento profilo', err);
       },
     });

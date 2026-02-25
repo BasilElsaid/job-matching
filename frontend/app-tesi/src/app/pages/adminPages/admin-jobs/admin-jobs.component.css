@@ -44,10 +44,25 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  padding-bottom: 10px;
 }
 
 mat-card-actions {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+mat-card-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* CONTACT */
+.contact-section {
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  gap: 0px;
 }

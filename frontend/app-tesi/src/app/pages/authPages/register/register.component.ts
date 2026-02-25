@@ -85,6 +85,7 @@ export class RegisterComponent {
 
     this.authService.register(formData).subscribe({
       next: (res) => {
+        alert('Utente registrato con successo');
         console.log('Utente registrato:', res);
 
         // Dopo registrazione → facciamo login automatico
@@ -94,6 +95,7 @@ export class RegisterComponent {
         this.router.navigate(['/company/dashboard']);
       },
       error: (err) => {
+        alert('Erorore nella richiesta');
         console.error('Errore registrazione:', err);
       },
     });
