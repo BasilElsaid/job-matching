@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
     this.companyService.deleteMe().subscribe({
       next: () => {
         localStorage.removeItem('token');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       },
       error: (err) => {
         console.error('Errore eliminazione profilo:', err);

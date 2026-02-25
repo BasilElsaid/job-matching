@@ -36,7 +36,7 @@ export class RegisterComponent {
     private router: Router,
   ) {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/company/dashboard']);
     }
 
     this.registerForm = this.fb.group(
@@ -85,16 +85,16 @@ export class RegisterComponent {
 
     this.authService.register(formData).subscribe({
       next: (res) => {
-        console.log('✅ Utente registrato:', res);
+        console.log('Utente registrato:', res);
 
         // Dopo registrazione → facciamo login automatico
         this.authService.login(res);
 
         // Redirect dashboard
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/company/dashboard']);
       },
       error: (err) => {
-        console.error('❌ Errore registrazione:', err);
+        console.error('Errore registrazione:', err);
       },
     });
   }

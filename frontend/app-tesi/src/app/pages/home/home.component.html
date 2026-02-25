@@ -12,14 +12,8 @@
         Esplora Annunci
       </button>
 
-      <button
-        mat-raised-button
-        color="accent"
-        [routerLink]="authService.isCompany() ? '/dashboard' : '/register'"
-      >
-        {{
-          authService.isCompany() ? "Vai alla Dashboard" : "Registra Azienda"
-        }}
+      <button mat-raised-button color="accent" [routerLink]="companyRoute">
+        {{ companyButtonLabel }}
       </button>
     </div>
   </div>

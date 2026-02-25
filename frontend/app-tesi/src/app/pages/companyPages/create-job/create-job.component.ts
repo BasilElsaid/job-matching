@@ -67,7 +67,7 @@ export class CreateJobComponent implements OnInit {
 
     this.jobService.createJob(this.jobForm.value).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/company/dashboard']);
       },
       error: (err) => {
         console.error('Errore creazione job:', err);

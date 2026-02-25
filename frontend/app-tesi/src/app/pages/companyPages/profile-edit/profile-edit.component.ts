@@ -14,7 +14,6 @@ import { Router, RouterModule } from '@angular/router';
 import { User } from '../../../core/models/user.model';
 import { CompanyService } from '../../../core/services/company.service';
 
-
 @Component({
   selector: 'app-profile-edit',
   imports: [
@@ -80,10 +79,10 @@ export class ProfileEditComponent implements OnInit {
 
     this.companyService.updateMe(payload).subscribe({
       next: () => {
-        alert('Profilo aggiornato');
+        alert('Richiesta mandata con successo');
 
         // 🔥 Torna al profilo invece che alla dashboard
-        this.router.navigate(['/profile']);
+        this.router.navigate(['company/profile']);
       },
       error: (err) => {
         console.error('Errore aggiornamento profilo', err);
