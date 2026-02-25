@@ -7,7 +7,6 @@ import { RouterModule, Router } from '@angular/router';
 import { User } from '../../../core/models/user.model';
 import { CompanyService } from '../../../core/services/company.service';
 
-
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -26,7 +25,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -34,26 +33,28 @@ export class ProfileComponent implements OnInit {
   }
 
   loadCompany() {
+    if (!localStorage.getItem('token')) return;
+
     this.companyService.getMe().subscribe({
       next: (data) => {
         this.company = data;
       },
-      error: (err) => {
-        console.error('Errore caricamento profilo:', err);
+      error: () => {
+        this.router.navigate(['/auth/login']);
       },
     });
   }
 
   deleteProfile() {
     const confirmDelete = confirm(
-      'Sei sicuro di voler eliminare il profilo? Tutti gli annunci vostri verrano eliminati di conseguenza.'
+      'Sei sicuro di voler eliminare il profilo? Tutti gli annunci vostri verrano eliminati di conseguenza.',
     );
 
     if (!confirmDelete) return;
 
     this.companyService.deleteMe().subscribe({
       next: () => {
-        alert('Profilo eliminato con successo.');
+        alert('Profilo eliminato con successo');
         localStorage.removeItem('token');
         this.router.navigate(['/auth/login']);
       },

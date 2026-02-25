@@ -60,17 +60,36 @@ export class RegisterComponent {
           '',
           [Validators.required, Validators.pattern(/^[0-9+\-\s]{8,15}$/)],
         ],
-        address: ['', Validators.required],
+        companyAddress: ['', Validators.required],
       },
       { validators: this.passwordMatchValidator },
     );
+    // 🔥 Forza ricalcolo quando cambia password o confirmPassword
+    this.registerForm.get('password')?.valueChanges.subscribe(() => {
+      this.registerForm.updateValueAndValidity();
+    });
+
+    this.registerForm.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.registerForm.updateValueAndValidity();
+    });
+    this.registerForm.get('email')?.valueChanges.subscribe(() => {
+      const emailControl = this.registerForm.get('email');
+      if (emailControl?.hasError('emailTaken')) {
+        const errors = { ...emailControl.errors };
+        delete errors['emailTaken'];
+        emailControl.setErrors(Object.keys(errors).length ? errors : null);
+      }
+    });
   }
 
-  passwordMatchValidator(form: AbstractControl) {
+  passwordMatchValidator = (form: AbstractControl) => {
     const password = form.get('password')?.value;
     const confirm = form.get('confirmPassword')?.value;
-    return password === confirm ? null : { mismatch: true };
-  }
+
+    return password && confirm && password !== confirm
+      ? { mismatch: true }
+      : null;
+  };
 
   onSubmit() {
     if (this.registerForm.invalid) return;
@@ -84,19 +103,27 @@ export class RegisterComponent {
     formData.role = 'COMPANY';
 
     this.authService.register(formData).subscribe({
-      next: (res) => {
-        alert('Utente registrato con successo');
-        console.log('Utente registrato:', res);
-
-        // Dopo registrazione → facciamo login automatico
-        this.authService.login(res);
-
-        // Redirect dashboard
-        this.router.navigate(['/company/dashboard']);
+      next: () => {
+        this.authService
+          .loginApi({
+            email: formData.email,
+            password: formData.password,
+          })
+          .subscribe((loginRes) => {
+            this.authService.login(loginRes);
+            this.router.navigate(['/company/dashboard']);
+          });
       },
       error: (err) => {
-        alert('Erorore nella richiesta');
         console.error('Errore registrazione:', err);
+
+        if (
+          err.status === 400 &&
+          err.error?.message === 'Email già registrata'
+        ) {
+          this.registerForm.get('email')?.setErrors({ emailTaken: true });
+          return;
+        }
       },
     });
   }

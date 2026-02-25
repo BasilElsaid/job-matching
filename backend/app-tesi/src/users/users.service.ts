@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './user.schema';
@@ -24,6 +28,14 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    const existingUser = await this.userModel.findOne({
+      email: createUserDto.email,
+    });
+
+    if (existingUser) {
+      throw new BadRequestException('Email già registrata');
+    }
+
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
     const user = new this.userModel({
@@ -58,43 +70,7 @@ export class UsersService {
   async findById(id: string) {
     return this.userModel.findById(id).select('-password').exec();
   }
-  /*
-  async updateProfile(id: string, data: UpdateUserDto) {
-    const user = await this.userModel.findById(id);
 
-    if (!user) {
-      throw new NotFoundException('User non trovato');
-    }
-
-    // 🔥 Aggiorniamo solo campi aziendali
-    if (data.companyEmail !== undefined) {
-      user.companyEmail = data.companyEmail;
-    }
-
-    if (data.companyPhone !== undefined) {
-      user.companyPhone = data.companyPhone;
-    }
-
-    if (data.companyAddress !== undefined) {
-      user.companyAddress = data.companyAddress;
-    }
-
-    await user.save();
-
-    // 🚀 🔥 AGGIORNA TUTTI GLI ANNUNCI DELL'AZIENDA
-    await this.jobModel.updateMany(
-      { companyId: id },
-      {
-        $set: {
-          contactEmail: user.companyEmail,
-          contactPhone: user.companyPhone,
-        },
-      },
-    );
-
-    return { message: 'Profilo aggiornato e annunci sincronizzati' };
-  }
-*/
   async updateProfile(id: string, data: UpdateUserDto) {
     const user = await this.userModel.findById(id);
 

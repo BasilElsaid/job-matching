@@ -36,7 +36,13 @@ export class CompanyService {
   }
 
   deleteMe() {
-    return this.http.delete(`${this.apiUrl}/companies/me`);
+    const token = localStorage.getItem('token');
+
+    return this.http.delete(`${this.apiUrl}/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   updateMe(data: any) {
