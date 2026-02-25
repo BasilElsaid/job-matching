@@ -127,4 +127,16 @@ export class RegisterComponent {
       },
     });
   }
+
+  getPasswordError(): string | null {
+    const control = this.registerForm.get('password');
+    if (!control?.errors) return null;
+
+    if (control.hasError('required')) return 'Password obbligatoria';
+    if (control.hasError('minlength')) return 'Minimo 8 caratteri';
+    if (control.hasError('pattern'))
+      return 'Deve contenere almeno 1 maiuscolo e 1 numero';
+
+    return null;
+  }
 }
