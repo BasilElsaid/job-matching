@@ -1,0 +1,39 @@
+<div class="admin-container">
+  <div class="top-bar">
+    <button mat-button routerLink="/admin">← Torna alla pagina Admin</button>
+  </div>
+
+  <mat-card class="admin-section">
+    <h3>Aziende Registrate</h3>
+
+    <div *ngIf="companies.length === 0">Nessuna Azienda Registrata.</div>
+
+    <div class="admin-users-grid">
+      <mat-card class="admin-user-card" *ngFor="let company of companies">
+        <mat-card-title>
+          {{ company.companyName }}
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          Email Login: {{ company.email }}
+        </mat-card-subtitle>
+
+        <mat-card-content>
+          <p>📧 {{ company.companyEmail }}</p>
+          <p>📞 {{ company.companyPhone }}</p>
+          <p>📍 {{ company.companyAddress }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="deleteCompany(company._id)"
+          >
+            Elimina
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

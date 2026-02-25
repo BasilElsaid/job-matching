@@ -4,9 +4,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule, Router } from '@angular/router';
+import { User } from '../../../core/models/user.model';
+import { CompanyService } from '../../../core/services/company.service';
 
-import { CompanyService } from '../../core/services/company.service';
-import { User } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-profile',

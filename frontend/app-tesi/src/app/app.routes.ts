@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { roleGuard } from './core/guards/role.guard';
+import { AdminComponent } from './pages/adminPages/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -14,79 +15,125 @@ export const routes: Routes = [
       },
 
       {
-        path: 'jobs',
-        loadComponent: () =>
-          import('./pages/jobs/jobs.component').then((m) => m.JobsComponent),
-      },
-
-      {
-        path: 'jobs/:id',
-        loadComponent: () =>
-          import('./pages/job-detail/job-detail.component').then(
-            (m) => m.JobDetailComponent,
-          ),
-      },
-
-      {
-        path: 'create-job',
-        loadComponent: () =>
-          import('./pages/create-job/create-job.component').then(
-            (m) => m.CreateJobComponent,
-          ),
-        canActivate: [roleGuard],
-        data: { role: 'COMPANY' },
-      },
-
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./pages/login/login.component').then((m) => m.LoginComponent),
+        path: 'auth',
+        children: [
+          {
+            path: '',
+            redirectTo: 'login',
+            pathMatch: 'full',
+          },
+          {
+            path: 'login',
+            loadComponent: () =>
+              import('./pages/authPages/login/login.component').then(
+                (m) => m.LoginComponent,
+              ),
+          },
+          {
+            path: 'register',
+            loadComponent: () =>
+              import('./pages/authPages/register/register.component').then(
+                (m) => m.RegisterComponent,
+              ),
+          },
+        ],
       },
 
       {
         path: 'admin',
-        loadComponent: () =>
-          import('./pages/admin/admin.component').then((m) => m.AdminComponent),
         canActivate: [roleGuard],
         data: { role: 'ADMIN' },
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/adminPages/admin/admin.component').then(
+                (m) => m.AdminComponent,
+              ),
+          },
+          {
+            path: 'jobs',
+            loadComponent: () =>
+              import('./pages/adminPages/admin-jobs/admin-jobs.component').then(
+                (m) => m.AdminJobsComponent,
+              ),
+          },
+          {
+            path: 'companies',
+            loadComponent: () =>
+              import('./pages/adminPages/admin-companies/admin-companies.component').then(
+                (m) => m.AdminCompaniesComponent,
+              ),
+          },
+          {
+            path: 'profile-pending',
+            loadComponent: () =>
+              import('./pages/adminPages/admin-profile-pending/admin-profile-pending.component').then(
+                (m) => m.AdminProfilePendingComponent,
+              ),
+          },
+        ],
       },
 
       {
-        path: 'register',
-        loadComponent: () =>
-          import('./pages/register/register.component').then(
-            (m) => m.RegisterComponent,
-          ),
-      },
-
-      {
-        path: 'dashboard',
-        loadComponent: () =>
-          import('./pages/dashboard/dashboard.component').then(
-            (m) => m.DashboardComponent,
-          ),
+        path: 'company',
         canActivate: [roleGuard],
         data: { role: 'COMPANY' },
+        children: [
+          {
+            path: '',
+            redirectTo: 'dashboard',
+            pathMatch: 'full',
+          },
+          {
+            path: 'dashboard',
+            loadComponent: () =>
+              import('./pages/companyPages/dashboard/dashboard.component').then(
+                (m) => m.DashboardComponent,
+              ),
+          },
+          {
+            path: 'profile',
+            loadComponent: () =>
+              import('./pages/companyPages/profile/profile.component').then(
+                (m) => m.ProfileComponent,
+              ),
+          },
+          {
+            path: 'profile-edit',
+            loadComponent: () =>
+              import('./pages/companyPages/profile-edit/profile-edit.component').then(
+                (m) => m.ProfileEditComponent,
+              ),
+          },
+          {
+            path: 'create-job',
+            loadComponent: () =>
+              import('./pages/companyPages/create-job/create-job.component').then(
+                (m) => m.CreateJobComponent,
+              ),
+          },
+        ],
       },
 
       {
-        path: 'profile',
-        loadComponent: () =>
-          import('./pages/profile/profile.component').then(
-            (m) => m.ProfileComponent,
-          ),
-        canActivate: [roleGuard],
-        data: { role: 'COMPANY' },
-      },
-
-      {
-        path: 'profile-edit',
-        loadComponent: () =>
-          import('./pages/profile-edit/profile-edit.component').then(
-            (m) => m.ProfileEditComponent,
-          ),
-        canActivate: [roleGuard],
-        data: { role: 'COMPANY' },
+        path: 'jobs',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/jobsPages/jobs/jobs.component').then(
+                (m) => m.JobsComponent,
+              ),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./pages/jobsPages/job-detail/job-detail.component').then(
+                (m) => m.JobDetailComponent,
+              ),
+          },
+        ],
       },
 
       {

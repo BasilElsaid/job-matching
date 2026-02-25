@@ -11,9 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterModule } from '@angular/router';
+import { User } from '../../../core/models/user.model';
+import { CompanyService } from '../../../core/services/company.service';
 
-import { CompanyService } from '../../core/services/company.service';
-import { User } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-profile-edit',

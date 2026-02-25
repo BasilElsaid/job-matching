@@ -1,0 +1,30 @@
+<div class="admin-container">
+  <h1 class="title">Admin Dashboard</h1>
+
+  <!-- NAVIGATION CARDS -->
+  <div class="admin-nav">
+    <a class="nav-card" routerLink="companies" routerLinkActive="active">
+      <div>
+        <h3>Aziende</h3>
+        <p>Gestisci tutte le aziende registrate</p>
+      </div>
+    </a>
+
+    <a class="nav-card" routerLink="profile-pending" routerLinkActive="active">
+      <div>
+        <h3>Modifiche Profilo</h3>
+        <p>Approva o rifiuta modifiche aziendali</p>
+      </div>
+    </a>
+
+    <a class="nav-card" routerLink="jobs" routerLinkActive="active">
+      <div>
+        <h3>Annunci</h3>
+        <p>Approva e controlla gli annunci</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- PAGINE CARICATE QUI -->
+  <router-outlet></router-outlet>
+</div>

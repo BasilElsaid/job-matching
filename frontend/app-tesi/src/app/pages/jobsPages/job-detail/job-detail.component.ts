@@ -3,9 +3,9 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { DatePipe, NgIf } from '@angular/common';
-import { JobService } from '../../core/services/job.service';
-import { Job } from '../../core/models/job.model';
 import { MatDividerModule } from '@angular/material/divider';
+import { Job } from '../../../core/models/job.model';
+import { JobService } from '../../../core/services/job.service';
 
 @Component({
   selector: 'app-job-detail',

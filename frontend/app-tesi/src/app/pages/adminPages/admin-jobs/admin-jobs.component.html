@@ -1,0 +1,68 @@
+<div class="admin-container">
+  <div class="top-bar">
+    <button mat-button routerLink="/admin">← Torna alla pagina Admin</button>
+  </div>
+
+  <mat-card class="admin-section">
+    <h3>Annunci Disponibili</h3>
+
+    <div *ngIf="jobs.length === 0">Nessun Annuncio Disponibile.</div>
+
+    <div class="admin-jobs-grid">
+      <mat-card class="admin-job-card" *ngFor="let job of jobs">
+        <mat-card-title>
+          {{ job.title }}
+        </mat-card-title>
+
+        <p
+          class="status"
+          [ngClass]="{
+            pending: job.status === 'PENDING',
+            approved: job.status === 'APPROVED',
+          }"
+        >
+          {{ statusMap[job.status] }}
+        </p>
+
+        <mat-card-subtitle>
+          📍 {{ job.location }} |
+          {{ job.companyId?.companyName }}
+        </mat-card-subtitle>
+
+        <mat-card-content>
+          <p
+            [ngClass]="{
+              'admin-job-description': !job.expanded,
+            }"
+          >
+            {{ job.description }}
+          </p>
+
+          <button
+            mat-button
+            color="primary"
+            *ngIf="job.description.length > 200"
+            (click)="toggleDescription(job)"
+          >
+            {{ job.expanded ? "Mostra meno" : "Mostra altro" }}
+          </button>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            color="primary"
+            *ngIf="job.status === 'PENDING'"
+            (click)="approveJob(job._id)"
+          >
+            Approva
+          </button>
+
+          <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
+            Elimina
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>
