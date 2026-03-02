@@ -1,5 +1,7 @@
 <div class="create-container">
-  <button mat-button routerLink="/company/dashboard">← Torna alla Dashboard</button>
+  <button mat-button routerLink="/company/dashboard">
+    ← Torna alla Dashboard
+  </button>
 
   <mat-card class="create-card">
     <h2>Crea annuncio di lavoro</h2>
@@ -12,12 +14,12 @@
 
     <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Titolo Lavoro</mat-label>
+        <mat-label>Titolo Annuncio</mat-label>
         <input matInput formControlName="title" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Posizione</mat-label>
+        <mat-label>Luogo di Lavoro</mat-label>
         <input matInput formControlName="location" />
       </mat-form-field>
 
