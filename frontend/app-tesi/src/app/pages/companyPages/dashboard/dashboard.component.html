@@ -5,7 +5,9 @@
       Crea Nuovo Annuncio
     </button>
 
-    <button mat-stroked-button routerLink="/company/profile">Profilo Azienda</button>
+    <button mat-stroked-button routerLink="/company/profile">
+      Profilo Azienda
+    </button>
   </div>
 
   <!-- HEADER -->
@@ -76,12 +78,23 @@
           <p class="description">
             {{ job.description }}
           </p>
+
+          <h3 class="section-title">Link di Riferimento</h3>
+          <p class="contact-section" *ngIf="job.referenceLink">
+            <a
+              [href]="job.referenceLink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ job.referenceLink }}
+            </a>
+          </p>
         </mat-card-content>
 
         <mat-divider></mat-divider>
 
         <!-- ACTION -->
-        <mat-card-actions class="contact-section">
+        <mat-card-actions class="delete-section">
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
             Elimina Annuncio
           </button>

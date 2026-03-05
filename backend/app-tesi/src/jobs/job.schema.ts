@@ -25,6 +25,9 @@ export class Job {
   @Prop({ default: true })
   active: boolean;
 
+  @Prop({ required: true })
+  referenceLink: string;
+
   @Prop({
     enum: ['PENDING', 'APPROVED'],
     default: 'PENDING',

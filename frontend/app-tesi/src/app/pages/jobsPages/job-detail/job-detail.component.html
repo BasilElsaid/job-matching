@@ -37,7 +37,6 @@
     <!-- CONTACT -->
     <mat-card-actions class="contact-section">
       <h3>Contattaci</h3>
-
       <p *ngIf="job.companyId?.companyEmail">
         <a [href]="'mailto:' + job.companyId?.companyEmail">
           {{ job.companyId?.companyEmail }}
@@ -47,6 +46,13 @@
       <p *ngIf="job.companyId?.companyPhone">
         <a [href]="'tel:' + job.companyId?.companyPhone">
           {{ job.companyId?.companyPhone }}
+        </a>
+      </p>
+
+      <h3 class="section-title">Link di Riferimento</h3>
+      <p *ngIf="job.referenceLink">
+        <a [href]="job.referenceLink" target="_blank" rel="noopener noreferrer">
+          {{ job.referenceLink }}
         </a>
       </p>
     </mat-card-actions>

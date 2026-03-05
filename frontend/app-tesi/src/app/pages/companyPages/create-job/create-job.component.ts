@@ -44,6 +44,7 @@ export class CreateJobComponent implements OnInit {
       location: ['', Validators.required],
       type: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(20)]],
+      link: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
     });
   }
 

@@ -71,6 +71,10 @@
           <p *ngIf="job.companyId?.companyPhone">
             📞 {{ job.companyId?.companyPhone }}
           </p>
+
+          <p *ngIf="job.referenceLink">
+            🔗 {{ job.referenceLink }}
+          </p>
         </mat-card-actions>
 
         <mat-divider></mat-divider>

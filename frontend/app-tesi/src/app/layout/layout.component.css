@@ -50,12 +50,28 @@
 /* ================= FOOTER ================= */
 
 .footer {
-  text-align: center;
-  padding: 20px;
-  background: #0d47a1;
+  background: #1e1e1e;
   color: white;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  padding: 1.5rem 1rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.developer {
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+.developer-name {
+  font-size: 0.9rem;
 }
 
 /* ================= SIDENAV ================= */

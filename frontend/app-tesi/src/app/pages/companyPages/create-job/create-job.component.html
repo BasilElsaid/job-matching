@@ -33,6 +33,19 @@
         <textarea matInput rows="5" formControlName="description"> </textarea>
       </mat-form-field>
 
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Link di riferimento</mat-label>
+        <input matInput formControlName="link" type="url" />
+
+        <mat-error *ngIf="jobForm.get('link')?.hasError('required')">
+          Il link è obbligatorio
+        </mat-error>
+
+        <mat-error *ngIf="jobForm.get('link')?.hasError('pattern')">
+          Inserisci un link valido (es. https://...)
+        </mat-error>
+      </mat-form-field>
+
       <!-- INFO AZIENDA -->
       <div class="company-info">
         <h3>Dati Aziendali (presi dal profilo)</h3>
