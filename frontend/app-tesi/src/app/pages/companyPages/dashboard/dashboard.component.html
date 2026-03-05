@@ -106,7 +106,7 @@
         <!-- ACTION -->
         <mat-card-actions class="renew-delete-section">
           <button
-            *ngIf="isExpired(job.expiresAt)"
+            *ngIf="!isExpired(job.expiresAt)"
             mat-stroked-button
             (click)="renewJob(job._id)"
           >

@@ -82,6 +82,11 @@ export class DashboardComponent implements OnInit {
   }
 
   renewJob(jobId: string) {
+    if (
+      !confirm('Sei sicuro di voler rinnovare questo annuncio per 30 giorni?')
+    )
+      return;
+
     this.jobService.renewJob(jobId).subscribe({
       next: () => {
         alert('Annuncio rinnovato per altri 30 giorni');
