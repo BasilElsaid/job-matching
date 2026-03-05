@@ -44,8 +44,11 @@ export class CreateJobComponent implements OnInit {
       location: ['', Validators.required],
       type: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(20)]],
-      referenceLink: ['', [Validators.required, Validators.pattern(/https?:\/\/.+/)]],
-      expiresAt: ['', Validators.required],
+      referenceLink: [
+        '',
+        [Validators.required, Validators.pattern(/https?:\/\/.+/)],
+      ],
+      expiresAt: ['', [Validators.required, this.min30DaysValidator]],
     });
   }
 
@@ -77,5 +80,21 @@ export class CreateJobComponent implements OnInit {
         console.error('Errore creazione job:', err);
       },
     });
+  }
+
+  min30DaysValidator(control: any) {
+    if (!control.value) return null;
+
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+
+    const minDate = new Date();
+    minDate.setDate(today.getDate() + 30);
+
+    if (selectedDate < minDate) {
+      return { min30days: true };
+    }
+
+    return null;
   }
 }

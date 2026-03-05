@@ -49,6 +49,14 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Data Scadenza</mat-label>
         <input matInput type="date" formControlName="expiresAt" />
+
+        <mat-error *ngIf="jobForm.get('expiresAt')?.hasError('required')">
+          La data è obbligatoria
+        </mat-error>
+
+        <mat-error *ngIf="jobForm.get('expiresAt')?.hasError('min30days')">
+          La data di scadenza deve essere almeno tra 30 giorni
+        </mat-error>
       </mat-form-field>
 
       <!-- INFO AZIENDA -->
