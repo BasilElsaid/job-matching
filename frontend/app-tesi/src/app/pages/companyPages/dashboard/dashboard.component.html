@@ -54,6 +54,9 @@
             <span class="job-type">
               {{ job.type }}
             </span>
+            <div *ngIf="isExpired(job.expiresAt)" class="expired-badge">
+              SCADUTO
+            </div>
 
             <div
               class="status-badge"
@@ -101,7 +104,14 @@
         <mat-divider></mat-divider>
 
         <!-- ACTION -->
-        <mat-card-actions class="delete-section">
+        <mat-card-actions class="renew-delete-section">
+          <button
+            *ngIf="isExpired(job.expiresAt)"
+            mat-stroked-button
+            (click)="renewJob(job._id)"
+          >
+            Rinnova 30 giorni
+          </button>
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
             Elimina Annuncio
           </button>

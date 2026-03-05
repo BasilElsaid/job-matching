@@ -65,4 +65,11 @@ export class JobsController {
   approveJob(@Param('id') id: string) {
     return this.jobsService.approve(id);
   }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('COMPANY')
+  @Patch(':id/renew')
+  renewJob(@Param('id') id: string, @Req() req) {
+    return this.jobsService.renewJob(id, req.user.userId);
+  }
 }

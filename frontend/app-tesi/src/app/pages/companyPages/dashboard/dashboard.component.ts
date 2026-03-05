@@ -74,4 +74,23 @@ export class DashboardComponent implements OnInit {
       },
     });
   }
+
+  isExpired(date: Date | string): boolean {
+    if (!date) return false;
+
+    return new Date(date).getTime() < new Date().getTime();
+  }
+
+  renewJob(jobId: string) {
+    this.jobService.renewJob(jobId).subscribe({
+      next: () => {
+        alert('Annuncio rinnovato per altri 30 giorni');
+        this.loadMyJobs();
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Errore nel rinnovo');
+      },
+    });
+  }
 }

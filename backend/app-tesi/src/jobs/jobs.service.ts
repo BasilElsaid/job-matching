@@ -22,8 +22,11 @@ export class JobsService {
 
   async findAll() {
     return this.jobModel
-      .find({ status: 'APPROVED' })
-      .populate('companyId', 'companyName email phone')
+      .find({
+        status: 'APPROVED',
+        expiresAt: { $gt: new Date() }, // solo non scaduti
+      })
+      .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
   }
 
@@ -51,10 +54,20 @@ export class JobsService {
   }
 
   async findOne(id: string) {
-    return this.jobModel
+    const job = await this.jobModel
       .findById(id)
       .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
+
+    if (!job) {
+      throw new NotFoundException('Annuncio non trovato');
+    }
+
+    if (job.expiresAt < new Date()) {
+      throw new NotFoundException('Annuncio scaduto');
+    }
+
+    return job;
   }
 
   approve(id: string) {
@@ -70,5 +83,24 @@ export class JobsService {
       .find()
       .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
+  }
+
+  async renewJob(id: string, companyId: string) {
+    const job = await this.jobModel.findById(id);
+
+    if (!job) {
+      throw new NotFoundException('Annuncio non trovato');
+    }
+
+    if (job.companyId.toString() !== companyId) {
+      throw new ForbiddenException('Non autorizzato');
+    }
+
+    const newExpiration = new Date(job.expiresAt);
+    newExpiration.setDate(newExpiration.getDate() + 30);
+
+    job.expiresAt = newExpiration;
+
+    return job.save();
   }
 }

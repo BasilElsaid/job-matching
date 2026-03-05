@@ -11,10 +11,14 @@
         </mat-card-subtitle>
       </div>
 
-      <!-- Tipo contratto come badge -->
-      <span class="job-type">
-        {{ job.type }}
-      </span>
+      <div class="header-right">
+        <span class="job-type">
+          {{ job.type }}
+        </span>
+        <div *ngIf="isExpired(job.expiresAt)" class="expired-badge">
+          SCADUTO
+        </div>
+      </div>
     </div>
 
     <!-- BODY -->
@@ -24,7 +28,7 @@
           <strong>Pubblicato:</strong>
           {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
         </span>
-        <br/>
+        <br />
         <span>
           <strong>Scadenza:</strong>
           {{ job.expiresAt | date: "dd/MM/yyyy HH:mm" }}

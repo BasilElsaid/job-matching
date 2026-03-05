@@ -13,7 +13,13 @@ type JobWithUI = Job & {
 
 @Component({
   selector: 'app-admin-jobs',
-  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule, MatDivider],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    RouterModule,
+    MatDivider,
+  ],
   templateUrl: './admin-jobs.component.html',
   styleUrl: './admin-jobs.component.css',
 })
@@ -56,5 +62,11 @@ export class AdminJobsComponent implements OnInit {
 
   toggleDescription(job: JobWithUI) {
     job.expanded = !job.expanded;
+  }
+
+  isExpired(date: Date | string): boolean {
+    if (!date) return false;
+
+    return new Date(date).getTime() < new Date().getTime();
   }
 }

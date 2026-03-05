@@ -9,7 +9,14 @@ import { JobService } from '../../../core/services/job.service';
 
 @Component({
   selector: 'app-job-detail',
-  imports: [MatCardModule, MatButtonModule, NgIf, DatePipe, MatDividerModule, RouterLink],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    NgIf,
+    DatePipe,
+    MatDividerModule,
+    RouterLink,
+  ],
   templateUrl: './job-detail.component.html',
   styleUrl: './job-detail.component.css',
 })
@@ -42,5 +49,11 @@ export class JobDetailComponent implements OnInit {
         },
       });
     });
+  }
+
+  isExpired(date: Date | string): boolean {
+    if (!date) return false;
+
+    return new Date(date).getTime() < new Date().getTime();
   }
 }

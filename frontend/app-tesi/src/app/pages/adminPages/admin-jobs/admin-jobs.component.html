@@ -32,6 +32,9 @@
             <span class="job-type">
               {{ job.type }}
             </span>
+            <div *ngIf="isExpired(job.expiresAt)" class="expired-badge">
+              SCADUTO
+            </div>
           </div>
         </div>
 

@@ -54,5 +54,8 @@ export class JobService {
       },
     });
   }
-  
+
+  renewJob(jobId: string) {
+    return this.http.patch(`${this.apiUrl}/${jobId}/renew`, {});
+  }
 }

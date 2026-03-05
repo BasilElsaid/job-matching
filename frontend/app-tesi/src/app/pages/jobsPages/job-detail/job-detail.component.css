@@ -87,3 +87,20 @@ mat-card-subtitle {
 .contact-section a:hover {
   text-decoration: underline;
 }
+
+.expired-badge {
+  background-color: #ff9800;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
