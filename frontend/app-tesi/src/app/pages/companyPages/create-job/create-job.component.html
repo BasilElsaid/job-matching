@@ -35,15 +35,20 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Link di riferimento</mat-label>
-        <input matInput formControlName="link" type="url" />
+        <input matInput formControlName="referenceLink" type="url" />
 
-        <mat-error *ngIf="jobForm.get('link')?.hasError('required')">
+        <mat-error *ngIf="jobForm.get('referenceLink')?.hasError('required')">
           Il link è obbligatorio
         </mat-error>
 
-        <mat-error *ngIf="jobForm.get('link')?.hasError('pattern')">
+        <mat-error *ngIf="jobForm.get('referenceLink')?.hasError('pattern')">
           Inserisci un link valido (es. https://...)
         </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data Scadenza</mat-label>
+        <input matInput type="date" formControlName="expiresAt" />
       </mat-form-field>
 
       <!-- INFO AZIENDA -->

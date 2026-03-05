@@ -3,94 +3,75 @@
     <button mat-button routerLink="/admin">← Torna alla pagina Admin</button>
   </div>
 
-  <mat-card class="admin-section">
-    <h3>Annunci Disponibili</h3>
+  <mat-card class="jobs-section">
+    <h2>Annunci Disponbili</h2>
 
-    <div *ngIf="jobs.length === 0">Nessun Annuncio Disponibile.</div>
+    <div *ngIf="jobs.length === 0">Nessun Annuncio creato ancora.</div>
 
-    <div class="admin-jobs-grid">
-      <mat-card class="admin-job-card" *ngFor="let job of jobs">
-        <mat-card-title>
-          {{ job.title }}
-        </mat-card-title>
+    <div class="jobs-list">
+      <mat-card *ngFor="let job of jobs" class="detail-card">
+        <!-- HEADER -->
+        <div class="card-header">
+          <div>
+            <mat-card-title>{{ job.title }}</mat-card-title>
+            <mat-card-subtitle>
+              📍 {{ job.location }} | {{ job.companyId?.companyName }}
+            </mat-card-subtitle>
+            <div
+              class="status-text"
+              [ngClass]="{
+                PENDING: job.status === 'PENDING',
+                APPROVED: job.status === 'APPROVED',
+              }"
+            >
+              {{ statusMap[job.status] }}
+            </div>
+          </div>
 
-        <p
-          class="status"
-          [ngClass]="{
-            pending: job.status === 'PENDING',
-            approved: job.status === 'APPROVED',
-          }"
-        >
-          {{ statusMap[job.status] }}
-        </p>
-
-        <mat-card-subtitle>
-          📍 {{ job.location }} | {{ job.companyId?.companyName }}
-        </mat-card-subtitle>
-
-        <mat-card-subtitle>
-          {{ job.type }}
-        </mat-card-subtitle>
-
-        <mat-card-subtitle>
-          <div class="meta-info">
-            <span>
-              Pubblicato:
-              {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
+          <div class="header-right">
+            <span class="job-type">
+              {{ job.type }}
             </span>
           </div>
-        </mat-card-subtitle>
+        </div>
 
+        <!-- BODY -->
         <mat-card-content>
-          <p
-            [ngClass]="{
-              'admin-job-description': !job.expanded,
-            }"
-          >
+          <div class="meta-info">
+            <span>
+              <strong>Pubblicato:</strong>
+              {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
+            </span>
+            <br />
+            <span>
+              <strong>Scadenza:</strong>
+              {{ job.expiresAt | date: "dd/MM/yyyy HH:mm" }}
+            </span>
+          </div>
+
+          <h3 class="section-title">Descrizione</h3>
+          <p class="description">
             {{ job.description }}
           </p>
 
-          <button
-            mat-button
-            color="primary"
-            *ngIf="job.description.length > 200"
-            (click)="toggleDescription(job)"
-          >
-            {{ job.expanded ? "Mostra meno" : "Mostra altro" }}
-          </button>
+          <h3 class="section-title">Link di Riferimento</h3>
+          <p class="contact-section" *ngIf="job.referenceLink">
+            <a
+              [href]="job.referenceLink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {{ job.referenceLink }}
+            </a>
+          </p>
         </mat-card-content>
 
         <mat-divider></mat-divider>
 
-        <!-- CONTACT -->
-        <mat-card-actions class="contact-section">
-          <p *ngIf="job.companyId?.companyEmail">
-            📧 {{ job.companyId?.companyEmail }}
-          </p>
-
-          <p *ngIf="job.companyId?.companyPhone">
-            📞 {{ job.companyId?.companyPhone }}
-          </p>
-
-          <p *ngIf="job.referenceLink">
-            🔗 {{ job.referenceLink }}
-          </p>
-        </mat-card-actions>
-
-        <mat-divider></mat-divider>
-
-        <mat-card-actions>
-          <button
-            mat-stroked-button
-            color="primary"
-            *ngIf="job.status === 'PENDING'"
-            (click)="approveJob(job._id)"
-          >
-            Approva
-          </button>
-
+        <!-- ACTION -->
+        <mat-card-actions class="delete-section">
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
-            Elimina
+            Elimina Annuncio
           </button>
         </mat-card-actions>
       </mat-card>

@@ -1,4 +1,4 @@
-import { IsString, IsUrl } from 'class-validator';
+import { IsDate, IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 export class CreateJobDto {
   title: string;
@@ -9,4 +9,8 @@ export class CreateJobDto {
   @IsString()
   @IsUrl()
   referenceLink?: string;
+
+  @IsDate()
+  @IsNotEmpty()
+  expiresAt: Date;
 }

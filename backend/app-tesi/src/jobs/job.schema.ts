@@ -28,6 +28,9 @@ export class Job {
   @Prop({ required: true })
   referenceLink: string;
 
+  @Prop({ required: true })
+  expiresAt: Date;
+
   @Prop({
     enum: ['PENDING', 'APPROVED'],
     default: 'PENDING',

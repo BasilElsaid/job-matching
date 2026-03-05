@@ -21,8 +21,13 @@
     <mat-card-content>
       <div class="meta-info">
         <span>
-          Pubblicato:
+          <strong>Pubblicato:</strong>
           {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
+        </span>
+        <br/>
+        <span>
+          <strong>Scadenza:</strong>
+          {{ job.expiresAt | date: "dd/MM/yyyy HH:mm" }}
         </span>
       </div>
 

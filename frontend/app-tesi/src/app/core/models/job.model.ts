@@ -10,6 +10,7 @@ export interface Job {
   updatedAt?: Date;
   status: JobStatus;
   referenceLink?: string;
+  expiresAt: Date;
 
   // 🔥 populate restituisce l'utente azienda qui
   companyId?: {
