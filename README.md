@@ -19,7 +19,7 @@ Tecnologie utilizzate:
 - Implementare un sistema SPA completo
 - Integrare frontend e backend tramite API REST
 - Gestire autenticazione con JWT
-- Implementare controllo accessi basato su ruoli (RBAC)
+- Implementare controllo accessi basato su ruoli
 - Realizzare operazioni CRUD su aziende e annunci
 
 ---
@@ -39,7 +39,7 @@ Il progetto segue un’architettura **client-server separata**.
 - NestJS
 - API REST
 - Autenticazione JWT
-- Autorizzazione per ruoli (ADMIN, COMPANY, STUDENT)
+- Autorizzazione per ruoli (ADMIN, COMPANY, GUEST)
 - Validazione DTO
 - Mongoose per MongoDB
 
@@ -100,4 +100,4 @@ http://localhost:4200
 
 ## Finalità Accademica
 
-Il progetto è stato sviluppato come caso di studio per la tesi triennale in Informatica per analizzare concretamente il funzionamento e i vantaggi dell’architettura SPA rispetto a una MPA tradizionale.
+Il progetto è stato sviluppato come caso di studio per la tesi triennale in Informatica per analizzare concretamente il funzionamento e i vantaggi dell’architettura SPA.
