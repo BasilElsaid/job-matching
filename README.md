@@ -87,7 +87,7 @@ http://localhost:3000
 ### Frontend
 
 ```bash
-cd frontend
+cd frontend/app-tesi
 npm install
 ng serve
 ```
