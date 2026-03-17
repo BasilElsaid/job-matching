@@ -114,9 +114,11 @@ Per Windows:
 
 Scaricare MongoDB dal sito ufficiale:
 https://www.mongodb.com/try/download/community
+
 Durante l’installazione:
-	•	Selezionare Complete Setup
-	•	Abilitare MongoDB as a Service
+	-	Selezionare Complete Setup
+	-	Abilitare MongoDB as a Service
+	
 Verifica da terminale: mongosh
 
 MongoDB deve essere in esecuzione prima di avviare il backend
