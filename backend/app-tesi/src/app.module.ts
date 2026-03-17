@@ -14,7 +14,7 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     JobsModule,
     ConfigModule.forRoot({
-      isGlobal: true, // 🔥 importantissimo
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],
