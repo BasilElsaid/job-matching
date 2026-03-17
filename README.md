@@ -1,5 +1,9 @@
 # Platform Aziende – Sistema SPA per la Gestione di Annunci di Lavoro
 
+## Finalità Accademica
+
+Il progetto è stato sviluppato come caso di studio per la tesi triennale in Informatica per analizzare concretamente il funzionamento e i vantaggi dell’architettura SPA.
+
 ## Descrizione
 
 Applicazione web sviluppata come caso di studio per l’analisi dell’architettura **Single Page Application (SPA)**.
@@ -68,6 +72,58 @@ Il progetto segue un’architettura **client-server separata**.
 
 ---
 
+## Prerequisiti
+
+Per eseguire correttamente il progetto, assicurarsi di avere installati i seguenti strumenti:
+
+### Node.js e npm
+Verificare con:
+
+```bash
+node -v
+npm -v
+```
+
+### Angular CLI
+Installazione:
+
+```bash
+npm install -g @angular/cli
+ng version
+```
+
+### NestJS CLI
+Installazione:
+
+```bash
+npm install -g @nestjs/cli
+nest --version
+```
+
+### MongoDB Shell
+Installazione:
+
+Per macOS utilizzare Homebrew
+```bash
+brew tap mongodb/brew
+brew install mongodb-community
+brew services start mongodb-community
+mongosh
+```
+
+Per Windows:
+
+Scaricare MongoDB dal sito ufficiale:
+https://www.mongodb.com/try/download/community
+
+Durante l’installazione:
+	-	Selezionare Complete Setup
+	-	Abilitare MongoDB as a Service
+	
+Verifica da terminale: mongosh
+
+---
+
 ## Avvio del Progetto
 
 ### Backend
@@ -100,31 +156,17 @@ http://localhost:4200
 
 ### Database
 
-Per eseguire correttamente il progetto è necessario avere MongoDB in esecuzione in locale.
+Per eseguire correttamente il progetto è necessario avere MongoDB in esecuzione in locale prima del backend.
 
 Per macOS utilizzare Homebrew
 ```bash
-brew tap mongodb/brew
-brew install mongodb-community
 brew services start mongodb-community
 mongosh
 ```
 
 Per Windows:
-
-Scaricare MongoDB dal sito ufficiale:
-https://www.mongodb.com/try/download/community
-
-Durante l’installazione:
-	-	Selezionare Complete Setup
-	-	Abilitare MongoDB as a Service
-	
-Verifica da terminale: mongosh
-
-MongoDB deve essere in esecuzione prima di avviare il backend
+```bash
+mongosh
+```
 
 ---
-
-## Finalità Accademica
-
-Il progetto è stato sviluppato come caso di studio per la tesi triennale in Informatica per analizzare concretamente il funzionamento e i vantaggi dell’architettura SPA.
