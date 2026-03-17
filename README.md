@@ -76,13 +76,23 @@ Il progetto segue un’architettura **client-server separata**.
 
 Per eseguire correttamente il progetto, assicurarsi di avere installati i seguenti strumenti:
 
-### Node.js e npm
-Verificare con:
+### Homebrew solo per macOS
+Installazione dal sito ufficiale:
 
+https://brew.sh
+
+### Node.js e npm
+Installazione:
+
+per macOS:
 ```bash
+brew install node
 node -v
 npm -v
 ```
+
+per Windows:
+https://nodejs.org/en/download/
 
 ### Angular CLI
 Installazione:
@@ -158,13 +168,13 @@ http://localhost:4200
 
 Per eseguire correttamente il progetto è necessario avere MongoDB in esecuzione in locale prima del backend.
 
-Per macOS utilizzare Homebrew
+da terminale macOS:
 ```bash
 brew services start mongodb-community
 mongosh
 ```
 
-Per Windows:
+da terminale Windows:
 ```bash
 mongosh
 ```
