@@ -150,7 +150,7 @@ Verifica da terminale: mongosh
 
 ---
 
-## Avvio del Progetto
+## Avvio del Progetto in Locale
 
 ### Backend
 
