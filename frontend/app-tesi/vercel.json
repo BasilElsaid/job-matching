@@ -1,8 +1,11 @@
 {
-  "routes": [
+  "version": 2,
+  "builds": [
     {
-      "src": "/.*",
-      "dest": "/index.html"
+      "src": "frontend/app-tesi/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist/app-tesi/browser" }
     }
-  ]
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "/index.html" }]
 }
