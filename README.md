@@ -80,6 +80,9 @@ Utilizzo senza installazione locale
 
 Basta visitare direttamente il link del frontend su Vercel:
 progetto-tesi-rc1u.vercel.app
+```bash
+progetto-tesi-rc1u.vercel.app
+```
 
 Il frontend interagisce automaticamente con il backend su Render e con il database MongoDB Atlas. Non è necessaria alcuna configurazione locale.
 
