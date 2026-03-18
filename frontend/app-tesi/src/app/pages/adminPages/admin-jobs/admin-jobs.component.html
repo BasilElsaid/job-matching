@@ -73,6 +73,14 @@
 
         <!-- ACTION -->
         <mat-card-actions class="delete-section">
+          <button
+            *ngIf="job.status === 'PENDING'"
+            mat-raised-button
+            color="primary"
+            (click)="approveJob(job._id)"
+          >
+            Approva Annuncio
+          </button>
           <button mat-stroked-button color="warn" (click)="deleteJob(job._id)">
             Elimina Annuncio
           </button>
