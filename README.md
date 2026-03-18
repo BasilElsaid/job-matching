@@ -72,6 +72,44 @@ Il progetto segue un’architettura **client-server separata**.
 
 ---
 
+## Deployment e Accesso Online
+
+Per facilitare la valutazione o la sperimentazione del progetto, la piattaforma è stata resa disponibile su cloud tramite Vercel per il frontend e Render per il backend, con MongoDB Atlas come database remoto.
+
+Frontend (Vercel)
+
+-  Accessibile direttamente al link: https://progetto-tesi-rc1u.vercel.app￼
+- SPA Angular già compilata in modalità produzione
+- Non è necessario installare o compilare nulla per visualizzare l’app
+
+Backend (Render)
+
+- API REST NestJS ospitate su: https://progetto-tesi-zyo7.onrender.com￼
+- Accessibile direttamente dal frontend o via strumenti come Postman
+- Autenticazione e autorizzazione funzionano correttamente tramite JWT
+
+Database (MongoDB Atlas)
+
+- Database remoto MongoDB gestito su Atlas
+- Collezioni principali già popolate con dati di test
+- Nessuna installazione locale richiesta per testare l’app online
+
+Utilizzo senza installazione locale
+
+Se non si desidera installare frontend, backend o database:
+
+	1.	Visitare direttamente il link del frontend su Vercel
+	2.	Effettuare login con credenziali di test fornite (o come Guest)
+	3.	L’applicazione interagirà automaticamente con il backend su Render e con MongoDB Atlas
+
+Nota per sviluppo locale
+
+Per chi volesse eseguire il progetto in locale, seguire le istruzioni nelle sezioni precedenti (Avvio del Progetto) per frontend, backend e database.
+
+
+---
+
+# Installazione in Locale
 ## Prerequisiti
 
 Per eseguire correttamente il progetto, assicurarsi di avere installati i seguenti strumenti:
