@@ -24,7 +24,7 @@ export class JobsService {
     return this.jobModel
       .find({
         status: 'APPROVED',
-        expiresAt: { $gt: new Date() }, // solo non scaduti
+        expiresAt: { $gt: new Date() },
       })
       .populate('companyId', 'companyName companyEmail companyPhone')
       .exec();
@@ -41,7 +41,6 @@ export class JobsService {
       throw new NotFoundException('Job non trovato');
     }
 
-    // 🔐 Se NON sei admin → devi essere proprietario
     if (userRole !== 'ADMIN') {
       if (job.companyId.toString() !== userId) {
         throw new ForbiddenException('Non autorizzato');

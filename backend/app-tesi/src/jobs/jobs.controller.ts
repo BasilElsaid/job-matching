@@ -19,7 +19,6 @@ import {
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
-  // 🔓 Pubblico
   @Get()
   findAll() {
     return this.jobsService.findAll();
@@ -32,7 +31,6 @@ export class JobsController {
     return this.jobsService.findAllForAdmin();
   }
 
-  // 🔐 Azienda vede solo i suoi annunci
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('COMPANY')
   @Get('mine')
@@ -45,7 +43,6 @@ export class JobsController {
     return this.jobsService.findOne(id);
   }
 
-  // 🔐 Solo aziende possono creare annunci
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('COMPANY')
   @Post()

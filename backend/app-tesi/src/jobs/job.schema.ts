@@ -18,7 +18,6 @@ export class Job {
   @Prop({ required: true })
   type: string;
 
-  // 🔥 CORRETTO PER POPULATE
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   companyId: Types.ObjectId;
 

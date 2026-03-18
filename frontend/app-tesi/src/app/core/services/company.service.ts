@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CompanyService {
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +19,7 @@ export class CompanyService {
   getMe(): Observable<User> {
     const token = localStorage.getItem('token');
 
-    return this.http.get<User>('http://localhost:3000/users/me', {
+    return this.http.get<User>(`${this.apiUrl}/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -48,7 +49,7 @@ export class CompanyService {
   updateMe(data: any) {
     const token = localStorage.getItem('token');
 
-    return this.http.patch<User>('http://localhost:3000/users/me', data, {
+    return this.http.patch<User>(`${this.apiUrl}/me`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -57,7 +58,7 @@ export class CompanyService {
 
   approveProfile(id: string) {
     return this.http.patch(
-      `http://localhost:3000/users/${id}/approve-profile`,
+      `${this.apiUrl}/${id}/approve-profile`,
       {},
       this.authHeader(),
     );
@@ -65,7 +66,7 @@ export class CompanyService {
 
   rejectProfile(id: string) {
     return this.http.patch(
-      `http://localhost:3000/users/${id}/reject-profile`,
+      `${this.apiUrl}/${id}/reject-profile`,
       {},
       this.authHeader(),
     );
