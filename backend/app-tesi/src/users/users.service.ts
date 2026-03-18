@@ -36,6 +36,14 @@ export class UsersService {
       throw new BadRequestException('Email già registrata');
     }
 
+    if (createUserDto.role === 'ADMIN') {
+      const existingAdmin = await this.userModel.findOne({ role: 'ADMIN' });
+
+      if (existingAdmin) {
+        throw new BadRequestException('Esiste già un ADMIN');
+      }
+    }
+
     const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
 
     const user = new this.userModel({
