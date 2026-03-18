@@ -76,16 +76,20 @@ Il progetto segue un’architettura **client-server separata**.
 
 Per facilitare la valutazione o la sperimentazione del progetto, la piattaforma è stata resa disponibile su cloud tramite Vercel per il frontend e Render per il backend, con MongoDB Atlas come database remoto.
 
-Per l'utilizzo senza installazione locale basta solo visitare direttamente il link del frontend su Vercel.
-progetto-tesi-rc1u.vercel.app
+Utilizzo senza installazione locale
 
-Per chi volesse eseguire il progetto in locale, seguire le istruzioni nelle sezioni seguente (Installazione in Locale) per frontend, backend e database.
+Basta visitare direttamente il link del frontend su Vercel:
+https://progetto-tesi-rc1u.vercel.app￼
+
+Il frontend interagisce automaticamente con il backend su Render e con il database MongoDB Atlas. Non è necessaria alcuna configurazione locale.
+
+Esecuzione in locale
+
+Per chi volesse eseguire il progetto in locale, seguire le istruzioni nella prossiam sezione (Installazione in Locale) per frontend, backend e database.
 
 ---
 
-# Installazione in Locale
-## Prerequisiti
-
+## Installazione in Locale
 Per eseguire correttamente il progetto, assicurarsi di avere installati i seguenti strumenti:
 
 ### Homebrew solo per macOS
