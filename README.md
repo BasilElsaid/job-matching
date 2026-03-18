@@ -152,6 +152,25 @@ Verifica da terminale: mongosh
 
 ## Avvio del Progetto in Locale
 
+---
+
+### Database
+
+Per eseguire correttamente il progetto è necessario avere MongoDB in esecuzione in locale prima del backend.
+
+da terminale macOS:
+```bash
+brew services start mongodb-community
+mongosh
+```
+
+da terminale Windows:
+```bash
+mongosh
+```
+
+---
+
 ### Backend
 
 ```bash
@@ -177,22 +196,5 @@ ng serve
 Frontend disponibile su:
 
 http://localhost:4200
-
----
-
-### Database
-
-Per eseguire correttamente il progetto è necessario avere MongoDB in esecuzione in locale prima del backend.
-
-da terminale macOS:
-```bash
-brew services start mongodb-community
-mongosh
-```
-
-da terminale Windows:
-```bash
-mongosh
-```
 
 ---
