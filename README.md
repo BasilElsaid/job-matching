@@ -85,7 +85,7 @@ Il frontend interagisce automaticamente con il backend su Render e con il databa
 
 ### Esecuzione in locale
 
-Per chi volesse eseguire il progetto in locale, seguire le istruzioni nella prossiam sezione (Installazione in Locale) per frontend, backend e database.
+Per chi volesse eseguire il progetto in locale, seguire le istruzioni nella prossima sezione (Installazione in Locale) per frontend, backend e database.
 
 ---
 
