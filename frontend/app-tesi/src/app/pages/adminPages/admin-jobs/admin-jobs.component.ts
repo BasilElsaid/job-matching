@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { Job, JobStatus } from '../../../core/models/job.model';
 import { JobService } from '../../../core/services/job.service';
-import { MatDivider } from '@angular/material/divider';
 
 type JobWithUI = Job & {
   expanded?: boolean;
@@ -15,10 +12,7 @@ type JobWithUI = Job & {
   selector: 'app-admin-jobs',
   imports: [
     CommonModule,
-    MatCardModule,
-    MatButtonModule,
     RouterModule,
-    MatDivider,
   ],
   templateUrl: './admin-jobs.component.html',
   styleUrl: './admin-jobs.component.css',

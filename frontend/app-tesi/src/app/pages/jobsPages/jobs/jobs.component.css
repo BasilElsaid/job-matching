@@ -14,13 +14,3 @@
   border-radius: 16px;
   padding: 1rem;
 }
-
-mat-card-title {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-mat-card-subtitle {
-  font-size: 14px;
-  color: #666;
-}

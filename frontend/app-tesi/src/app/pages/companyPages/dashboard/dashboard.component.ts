@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatDivider } from '@angular/material/divider';
 import { User } from '../../../core/models/user.model';
 import { Job, JobStatus } from '../../../core/models/job.model';
 import { CompanyService } from '../../../core/services/company.service';
@@ -12,11 +9,8 @@ import { JobService } from '../../../core/services/job.service';
 @Component({
   selector: 'app-dashboard',
   imports: [
-    MatCardModule,
-    MatButtonModule,
     RouterModule,
     CommonModule,
-    MatDivider,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

@@ -63,8 +63,3 @@
   font-size: 12px;
 }
 
-mat-card-actions {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}

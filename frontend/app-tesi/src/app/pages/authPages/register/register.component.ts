@@ -6,10 +6,6 @@ import {
   ReactiveFormsModule,
   AbstractControl,
 } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -18,10 +14,6 @@ import { AuthService } from '../../../core/services/auth.service';
   selector: 'app-register',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
     NgIf,
   ],
   templateUrl: './register.component.html',

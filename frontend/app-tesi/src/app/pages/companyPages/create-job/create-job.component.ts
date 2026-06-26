@@ -5,10 +5,6 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { JobService } from '../../../core/services/job.service';
@@ -19,10 +15,6 @@ import { User } from '../../../core/models/user.model';
   selector: 'app-create-job',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
     CommonModule,
     RouterLink,
   ],

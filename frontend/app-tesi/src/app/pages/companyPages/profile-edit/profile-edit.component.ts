@@ -6,10 +6,6 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../../core/models/user.model';
 import { CompanyService } from '../../../core/services/company.service';
@@ -19,10 +15,6 @@ import { CompanyService } from '../../../core/services/company.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatInputModule,
-    MatFormFieldModule,
     RouterModule,
   ],
   templateUrl: './profile-edit.component.html',

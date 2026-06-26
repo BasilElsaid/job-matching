@@ -85,20 +85,6 @@
   color: #1976d2;
 }
 
-/* ================= ACTION ================= */
-
-mat-card-actions {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* ================= SUBTITLE ================= */
-
-mat-card-subtitle {
-  color: #777;
-  font-size: 14px;
-}
 
 /* ================= STATUS TEXT ================= */
 
