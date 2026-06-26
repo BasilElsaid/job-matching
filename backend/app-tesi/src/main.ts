@@ -5,8 +5,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const allowedOrigins = [
-    'http://localhost:4200', // sviluppo locale
-    'https://job-matching-rc1u.vercel.app', // frontend su Vercel
+    'http://localhost:4200',
+    'https://job-matching-rc1u.vercel.app',
   ];
 
   app.enableCors({
@@ -15,7 +15,7 @@ async function bootstrap() {
         callback(null, true);
       } else {
         console.warn(`CORS bloccato per: ${origin}`);
-        callback(new Error('CORS non permesso'));
+        callback(null, false); // 👈 NON lanciare errori
       }
     },
     credentials: true,
@@ -25,4 +25,5 @@ async function bootstrap() {
 
   await app.listen(process.env.PORT ?? 3000);
 }
+
 bootstrap();
