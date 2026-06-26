@@ -6,7 +6,7 @@ async function bootstrap() {
 
   const allowedOrigins = [
     'http://localhost:4200', // sviluppo locale
-    'https://progetto-tesi-rc1u.vercel.app', // frontend su Vercel
+    'hhttps://job-matching-rc1u.vercel.app', // frontend su Vercel
   ];
 
   app.enableCors({
