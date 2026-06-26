@@ -1,39 +1,74 @@
-<div class="admin-container">
-  <div class="top-bar">
-    <button mat-button routerLink="/admin">← Torna alla pagina Admin</button>
-  </div>
+<div class="min-h-screen bg-slate-50 px-6 py-12">
 
-  <mat-card class="admin-section">
-    <h3>Aziende Registrate</h3>
+  <div class="max-w-6xl mx-auto">
 
-    <div *ngIf="companies.length === 0">Nessuna Azienda Registrata.</div>
+    <!-- BACK -->
+    <button
+      routerLink="/admin"
+      class="text-blue-600 hover:underline text-sm"
+    >
+      ← Torna alla pagina Admin
+    </button>
 
-    <div class="admin-users-grid">
-      <mat-card class="admin-user-card" *ngFor="let company of companies">
-        <mat-card-title>
+    <!-- TITLE -->
+    <h2 class="text-3xl font-bold text-slate-900 mt-6">
+      Aziende Registrate
+    </h2>
+
+    <!-- EMPTY -->
+    <div *ngIf="companies.length === 0" class="mt-8 text-slate-500">
+      Nessuna azienda registrata.
+    </div>
+
+    <!-- GRID -->
+    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+      <div
+        *ngFor="let company of companies"
+        class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+      >
+
+        <!-- HEADER -->
+        <h3 class="text-lg font-semibold text-slate-900">
           {{ company.companyName }}
-        </mat-card-title>
+        </h3>
 
-        <mat-card-subtitle>
-          Email Login: {{ company.email }}
-        </mat-card-subtitle>
+        <p class="text-sm text-slate-500 mt-1">
+          Login: {{ company.email }}
+        </p>
 
-        <mat-card-content>
-          <p>📧 {{ company.companyEmail }}</p>
-          <p>📞 {{ company.companyPhone }}</p>
-          <p>📍 {{ company.companyAddress }}</p>
-        </mat-card-content>
+        <!-- INFO -->
+        <div class="mt-4 space-y-2 text-sm text-slate-700">
 
-        <mat-card-actions>
+          <p>
+            📧 <span class="text-slate-600">{{ company.companyEmail }}</span>
+          </p>
+
+          <p>
+            📞 <span class="text-slate-600">{{ company.companyPhone }}</span>
+          </p>
+
+          <p>
+            📍 <span class="text-slate-600">{{ company.companyAddress }}</span>
+          </p>
+
+        </div>
+
+        <!-- ACTION -->
+        <div class="mt-5">
+
           <button
-            mat-stroked-button
-            color="warn"
             (click)="deleteCompany(company._id)"
+            class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
           >
             Elimina
           </button>
-        </mat-card-actions>
-      </mat-card>
+
+        </div>
+
+      </div>
+
     </div>
-  </mat-card>
+
+  </div>
 </div>

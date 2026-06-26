@@ -1,70 +1,129 @@
-<div class="detail-container">
-  <button mat-button routerLink="/jobs">← Torna agli annunci</button>
+<section class="min-h-screen bg-[#f5f7fa] px-6 py-12">
 
-  <mat-card *ngIf="!loading && job" class="detail-card">
-    <!-- HEADER -->
-    <div class="card-header">
-      <div>
-        <mat-card-title>{{ job.title }}</mat-card-title>
-        <mat-card-subtitle>
-          📍 {{ job.location }} | {{ job.companyId?.companyName }}
-        </mat-card-subtitle>
-      </div>
+  <div class="max-w-4xl mx-auto">
 
-      <div class="header-right">
-        <span class="job-type">
-          {{ job.type }}
-        </span>
-        <div *ngIf="isExpired(job.expiresAt)" class="expired-badge">
-          SCADUTO
-        </div>
-      </div>
+    <!-- BACK BUTTON -->
+    <button
+      routerLink="/jobs"
+      class="mb-6 text-sm text-slate-600 hover:text-slate-900 transition"
+    >
+      ← Torna agli annunci
+    </button>
+
+    <!-- LOADING -->
+    <div *ngIf="loading" class="text-center text-slate-500">
+      Caricamento...
     </div>
 
-    <!-- BODY -->
-    <mat-card-content>
-      <div class="meta-info">
-        <span>
-          <strong>Pubblicato:</strong>
-          {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
-        </span>
-        <br />
-        <span>
-          <strong>Scadenza:</strong>
-          {{ job.expiresAt | date: "dd/MM/yyyy HH:mm" }}
-        </span>
+    <!-- CARD -->
+    <div
+      *ngIf="!loading && job"
+      class="bg-white border border-slate-100 rounded-2xl shadow-sm p-8"
+    >
+
+      <!-- HEADER -->
+      <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+
+        <div>
+          <h1 class="text-2xl font-semibold text-slate-800">
+            {{ job.title }}
+          </h1>
+
+          <p class="text-slate-500 text-sm mt-2">
+            📍 {{ job.location }} | {{ job.companyId?.companyName }}
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+
+          <span
+            class="px-3 py-1 text-xs rounded-full bg-slate-100 text-slate-600"
+          >
+            {{ job.type }}
+          </span>
+
+          <span
+            *ngIf="isExpired(job.expiresAt)"
+            class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-600"
+          >
+            SCADUTO
+          </span>
+
+        </div>
+
       </div>
 
-      <h3 class="section-title">Descrizione</h3>
-      <p class="description">
-        {{ job.description }}
-      </p>
-    </mat-card-content>
+      <!-- META -->
+      <div class="mt-6 text-sm text-slate-500 space-y-1">
+        <p>
+          <span class="font-medium text-slate-700">Pubblicato:</span>
+          {{ job.createdAt | date: "dd/MM/yyyy HH:mm" }}
+        </p>
 
-    <mat-divider></mat-divider>
+        <p>
+          <span class="font-medium text-slate-700">Scadenza:</span>
+          {{ job.expiresAt | date: "dd/MM/yyyy HH:mm" }}
+        </p>
+      </div>
 
-    <!-- CONTACT -->
-    <mat-card-actions class="contact-section">
-      <h3>Contattaci</h3>
-      <p *ngIf="job.companyId?.companyEmail">
-        <a [href]="'mailto:' + job.companyId?.companyEmail">
-          {{ job.companyId?.companyEmail }}
-        </a>
-      </p>
+      <!-- DESCRIPTION -->
+      <div class="mt-8">
+        <h3 class="text-lg font-semibold text-slate-800 mb-3">
+          Descrizione
+        </h3>
 
-      <p *ngIf="job.companyId?.companyPhone">
-        <a [href]="'tel:' + job.companyId?.companyPhone">
-          {{ job.companyId?.companyPhone }}
-        </a>
-      </p>
+        <p class="text-slate-600 leading-relaxed whitespace-pre-line">
+          {{ job.description }}
+        </p>
+      </div>
 
-      <h3 class="section-title">Link di Riferimento</h3>
-      <p *ngIf="job.referenceLink">
-        <a [href]="job.referenceLink" target="_blank" rel="noopener noreferrer">
-          {{ job.referenceLink }}
-        </a>
-      </p>
-    </mat-card-actions>
-  </mat-card>
-</div>
-//
+      <!-- CONTACT -->
+      <div class="mt-10 border-t border-slate-100 pt-6">
+
+        <h3 class="text-lg font-semibold text-slate-800 mb-4">
+          Contatti
+        </h3>
+
+        <div class="space-y-2 text-sm">
+
+          <p *ngIf="job.companyId?.companyEmail">
+            📧
+            <a
+              class="text-blue-600 hover:underline"
+              [href]="'mailto:' + job.companyId?.companyEmail"
+            >
+              {{ job.companyId?.companyEmail }}
+            </a>
+          </p>
+
+          <p *ngIf="job.companyId?.companyPhone">
+            📞
+            <a
+              class="text-blue-600 hover:underline"
+              [href]="'tel:' + job.companyId?.companyPhone"
+            >
+              {{ job.companyId?.companyPhone }}
+            </a>
+          </p>
+
+          <p *ngIf="job.referenceLink">
+            🔗
+            <a
+              class="text-blue-600 hover:underline"
+              [href]="job.referenceLink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Link di riferimento
+            </a>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

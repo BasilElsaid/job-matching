@@ -1,62 +1,107 @@
-<div class="login-container">
-  <mat-card class="login-card">
-    <!-- 🔴 LOGIN -->
-    <div *ngIf="!authService.isAuthenticated()">
-      <mat-card-title> Login </mat-card-title>
-      <!-- 🔴 ERRORE LOGIN -->
-      <div *ngIf="errorMessage" class="error-box">
-        {{ errorMessage }}
+<section class="min-h-screen bg-[#f5f7fa] flex items-center justify-center px-6 py-16">
+
+  <div class="w-full max-w-md">
+
+    <!-- CARD -->
+    <div class="bg-white border border-slate-100 shadow-md rounded-2xl p-10">
+
+      <!-- HEADER -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-semibold text-slate-800">
+          Login
+        </h2>
+
+        <p class="text-sm text-slate-500 mt-2">
+          Accedi al tuo account per continuare
+        </p>
       </div>
 
-      <mat-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email" />
-            <mat-error *ngIf="loginForm.get('email')?.invalid">
+      <!-- LOGGED OUT -->
+      <div *ngIf="!authService.isAuthenticated()">
+
+        <!-- ERROR -->
+        <div
+          *ngIf="errorMessage"
+          class="mb-6 px-4 py-3 rounded-lg bg-red-50 text-red-600 text-sm border border-red-100"
+        >
+          {{ errorMessage }}
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-5">
+
+          <!-- EMAIL -->
+          <div>
+            <label class="text-sm text-slate-600">Email</label>
+            <input
+              type="email"
+              formControlName="email"
+              class="w-full mt-1 px-4 py-3 rounded-lg border border-slate-200
+                     focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <p class="text-red-500 text-xs mt-1"
+               *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
               Email non valida
-            </mat-error>
-          </mat-form-field>
+            </p>
+          </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" />
-            <mat-error *ngIf="loginForm.get('password')?.invalid">
+          <!-- PASSWORD -->
+          <div>
+            <label class="text-sm text-slate-600">Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="w-full mt-1 px-4 py-3 rounded-lg border border-slate-200
+                     focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
+            <p class="text-red-500 text-xs mt-1"
+               *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
               Password obbligatoria
-            </mat-error>
-          </mat-form-field>
+            </p>
+          </div>
 
+          <!-- BUTTON -->
           <button
-            mat-raised-button
-            color="primary"
-            class="full-width"
             type="submit"
             [disabled]="loginForm.invalid"
+            class="w-full py-3 rounded-lg bg-blue-600 text-white font-medium
+                   shadow-sm hover:bg-blue-700 transition disabled:opacity-50"
           >
             Login
           </button>
 
-          <div class="switch-auth">
-            <p>
-              Non hai un account?
-              <a routerLink="/register">Registrati qui</a>
-            </p>
-          </div>
         </form>
-      </mat-card-content>
-    </div>
 
-    <!-- 🟢 LOGGED IN -->
-    <div *ngIf="authService.isAuthenticated()">
-      <mat-card-title> Accesso Effettuato </mat-card-title>
+        <!-- SWITCH -->
+        <div class="mt-6 text-center text-sm text-slate-600">
+          Non hai un account?
+          <a routerLink="/register" class="text-blue-600 hover:underline">
+            Registrati qui
+          </a>
+        </div>
 
-      <mat-card-content>
-        <p>Sei autenticato correttamente.</p>
+      </div>
 
-        <button mat-raised-button color="warn" (click)="logout()">
+      <!-- LOGGED IN -->
+      <div *ngIf="authService.isAuthenticated()" class="text-center space-y-4">
+
+        <p class="text-slate-600">
+          Sei autenticato correttamente.
+        </p>
+
+        <button
+          (click)="logout()"
+          class="px-6 py-3 rounded-lg bg-red-600 text-white font-medium
+                 hover:bg-red-700 transition"
+        >
           Logout
         </button>
-      </mat-card-content>
+
+      </div>
+
     </div>
-  </mat-card>
-</div>
+
+  </div>
+
+</section>

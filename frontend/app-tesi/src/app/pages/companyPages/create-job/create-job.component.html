@@ -1,87 +1,108 @@
-<div class="create-container">
-  <button mat-button routerLink="/company/dashboard">
-    ← Torna alla Dashboard
-  </button>
+<div class="min-h-screen bg-slate-50 px-6 py-10">
 
-  <mat-card class="create-card">
-    <h2>Crea annuncio di lavoro</h2>
+  <div class="max-w-3xl mx-auto">
 
-    <div class="warning-box">
-      Attenzione: dopo la pubblicazione dell'annuncio, sarà necessario attendere
-      l'approvazione dell'amministratore prima che venga visibile nella sezione
-      degli annunci pubblici.
-    </div>
+    <!-- BACK -->
+    <button
+      routerLink="/company/dashboard"
+      class="text-blue-600 hover:underline text-sm mb-6">
+      ← Torna alla Dashboard
+    </button>
 
-    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Titolo Annuncio</mat-label>
-        <input matInput formControlName="title" />
-      </mat-form-field>
+    <!-- CARD -->
+    <div class="bg-white border rounded-xl shadow-sm p-6">
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Luogo di Lavoro</mat-label>
-        <input matInput formControlName="location" />
-      </mat-form-field>
+      <h2 class="text-xl font-bold text-slate-900">
+        Crea annuncio di lavoro
+      </h2>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Tipo Contratto</mat-label>
-        <input matInput formControlName="type" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Descrizione</mat-label>
-        <textarea matInput rows="5" formControlName="description"> </textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Link di riferimento</mat-label>
-        <input matInput formControlName="referenceLink" type="url" />
-
-        <mat-error *ngIf="jobForm.get('referenceLink')?.hasError('required')">
-          Il link è obbligatorio
-        </mat-error>
-
-        <mat-error *ngIf="jobForm.get('referenceLink')?.hasError('pattern')">
-          Inserisci un link valido (es. https://...)
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Data Scadenza</mat-label>
-        <input matInput type="date" formControlName="expiresAt" />
-
-        <mat-error *ngIf="jobForm.get('expiresAt')?.hasError('required')">
-          La data è obbligatoria
-        </mat-error>
-
-        <mat-error *ngIf="jobForm.get('expiresAt')?.hasError('min30days')">
-          La data di scadenza deve essere almeno tra 30 giorni
-        </mat-error>
-      </mat-form-field>
-
-      <!-- INFO AZIENDA -->
-      <div class="company-info">
-        <h3>Dati Aziendali (presi dal profilo)</h3>
-
-        <p>
-          📧 Email Aziendale:
-          <strong>{{ company.companyEmail }}</strong>
-        </p>
-
-        <p>
-          📞 Telefono Aziendale:
-          <strong>{{ company.companyPhone }}</strong>
-        </p>
+      <!-- WARNING -->
+      <div class="mt-4 p-4 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800">
+        Attenzione: l'annuncio sarà visibile solo dopo approvazione amministratore.
       </div>
 
-      <button
-        mat-raised-button
-        color="primary"
-        class="full-width"
-        [disabled]="jobForm.invalid"
-      >
-        Pubblica Annuncio
-      </button>
-    </form>
-  </mat-card>
+      <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="mt-6 space-y-5">
+
+        <!-- TITLE -->
+        <div>
+          <label class="text-sm text-slate-600">Titolo Annuncio</label>
+          <input
+            formControlName="title"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- LOCATION -->
+        <div>
+          <label class="text-sm text-slate-600">Luogo di Lavoro</label>
+          <input
+            formControlName="location"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- TYPE -->
+        <div>
+          <label class="text-sm text-slate-600">Tipo Contratto</label>
+          <input
+            formControlName="type"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div>
+          <label class="text-sm text-slate-600">Descrizione</label>
+          <textarea
+            rows="5"
+            formControlName="description"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+
+        <!-- LINK -->
+        <div>
+          <label class="text-sm text-slate-600">Link di riferimento</label>
+          <input
+            type="url"
+            formControlName="referenceLink"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+          <p *ngIf="jobForm.get('referenceLink')?.hasError('pattern')"
+             class="text-xs text-red-500 mt-1">
+            Inserisci un link valido (https://...)
+          </p>
+        </div>
+
+        <!-- EXPIRY -->
+        <div>
+          <label class="text-sm text-slate-600">Data Scadenza</label>
+          <input
+            type="date"
+            formControlName="expiresAt"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+          <p *ngIf="jobForm.get('expiresAt')?.hasError('min30days')"
+             class="text-xs text-red-500 mt-1">
+            La scadenza deve essere almeno tra 30 giorni
+          </p>
+        </div>
+
+        <!-- COMPANY INFO -->
+        <div class="p-4 rounded-lg bg-slate-50 border text-sm text-slate-700">
+          <h3 class="font-semibold mb-2">Dati Aziendali</h3>
+          <p>📧 {{ company.companyEmail }}</p>
+          <p>📞 {{ company.companyPhone }}</p>
+        </div>
+
+        <!-- ACTION -->
+        <div class="pt-2 flex justify-end">
+          <button
+            type="submit"
+            [disabled]="jobForm.invalid"
+            class="px-5 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed">
+            Pubblica Annuncio
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
 </div>

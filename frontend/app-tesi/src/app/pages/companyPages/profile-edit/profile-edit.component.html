@@ -1,73 +1,108 @@
-<div class="profile-container">
-  <!-- 🔙 Torna al Profilo (SOPRA IL CARD) -->
-  <button mat-button routerLink="/company/profile">← Torna al Profilo</button>
+<div class="min-h-screen bg-slate-50 px-6 py-10">
+  <div class="max-w-3xl mx-auto">
+    <!-- BACK -->
+    <button
+      routerLink="/company/profile"
+      class="text-blue-600 hover:underline text-sm mb-6"
+    >
+      ← Torna al Profilo
+    </button>
 
-  <mat-card class="register-card">
-    <h2>Modifica Profilo Azienda</h2>
-    <div class="warning-box">
-      Attenzione: modificando Email Aziendale, Telefono o Indirizzo, queste
-      informazioni verranno aggiornate automaticamente anche negli annunci già
-      pubblicati. Sarà comunque necessario attendere l'approvazione
-      dell'amministratore.
-    </div>
+    <!-- CARD -->
+    <div class="bg-white border rounded-xl shadow-sm p-6">
+      <h2 class="text-xl font-bold text-slate-900">Modifica Profilo Azienda</h2>
 
-    <form [formGroup]="registerForm" (ngSubmit)="save()">
-      <h3>Informazioni di Login</h3>
-
-      <!-- NOME -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Nome Azienda</mat-label>
-        <input matInput formControlName="companyName" />
-      </mat-form-field>
-
-      <!-- EMAIL LOGIN NON MODIFICABILE -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Login Email</mat-label>
-        <input matInput formControlName="email" />
-      </mat-form-field>
-
-      <!-- PASSWORD BLOCCATA -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" value="********" disabled />
-      </mat-form-field>
-
-      <h3>Informazioni Azienda</h3>
-
-      <!-- EMAIL AZIENDALE -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email Aziendale</mat-label>
-        <input matInput type="email" formControlName="companyEmail" />
-      </mat-form-field>
-
-      <!-- TELEFONO -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Telefono Aziendale</mat-label>
-        <input matInput formControlName="companyPhone" />
-        <mat-error
-          *ngIf="registerForm.get('companyPhone')?.hasError('pattern')"
-        >
-          Numero telefono invalido
-        </mat-error>
-      </mat-form-field>
-
-      <!-- INDIRIZZO -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Indirizzo</mat-label>
-        <input matInput formControlName="companyAddress" />
-      </mat-form-field>
-
-      <!-- BOTTONI AZIONI -->
-      <div class="actions-row">
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="registerForm.invalid || !isFormChanged()"
-        >
-          Salva Modifiche
-        </button>
+      <!-- WARNING -->
+      <div
+        class="mt-4 p-4 rounded-lg bg-amber-50 border border-amber-200 text-sm text-amber-800"
+      >
+        Attenzione: modificando Email Aziendale, Telefono o Indirizzo, queste
+        informazioni verranno aggiornate anche negli annunci già pubblicati e
+        richiederanno approvazione.
       </div>
-    </form>
-  </mat-card>
+
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="save()"
+        class="mt-6 space-y-5"
+      >
+        <!-- COMPANY NAME -->
+        <div>
+          <label class="text-sm text-slate-600">Nome Azienda</label>
+          <input
+            formControlName="companyName"
+            class="w-full mt-1 px-3 py-2 border rounded-lg bg-slate-100 text-slate-500 cursor-not-allowed"
+            readonly
+          />
+        </div>
+
+        <!-- LOGIN EMAIL -->
+        <div>
+          <label class="text-sm text-slate-600">Login Email</label>
+          <input
+            formControlName="email"
+            class="w-full mt-1 px-3 py-2 border rounded-lg bg-slate-100 text-slate-500 cursor-not-allowed"
+            readonly
+          />
+        </div>
+
+        <!-- PASSWORD -->
+        <div>
+          <label class="text-sm text-slate-600">Password</label>
+          <input
+            type="password"
+            value="********"
+            disabled
+            class="w-full mt-1 px-3 py-2 border rounded-lg bg-slate-100 text-slate-500"
+          />
+        </div>
+
+        <!-- COMPANY EMAIL -->
+        <div>
+          <label class="text-sm text-slate-600">Email Aziendale</label>
+          <input
+            formControlName="companyEmail"
+            type="email"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- PHONE -->
+        <div>
+          <label class="text-sm text-slate-600">Telefono</label>
+          <input
+            formControlName="companyPhone"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <p
+            *ngIf="registerForm.get('companyPhone')?.hasError('pattern')"
+            class="text-xs text-red-500 mt-1"
+          >
+            Numero non valido
+          </p>
+        </div>
+
+        <!-- ADDRESS -->
+        <div>
+          <label class="text-sm text-slate-600">Indirizzo</label>
+          <input
+            formControlName="companyAddress"
+            class="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="pt-4 flex justify-end">
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid || !isFormChanged()"
+            class="px-5 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Salva Modifiche
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

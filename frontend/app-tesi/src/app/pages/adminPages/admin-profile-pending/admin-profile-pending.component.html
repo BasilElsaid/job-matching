@@ -1,90 +1,131 @@
-<div class="admin-container">
-  <div class="top-bar">
-    <button mat-button routerLink="/admin">
+<div class="min-h-screen bg-slate-50 px-6 py-12">
+
+  <div class="max-w-6xl mx-auto">
+
+    <!-- BACK -->
+    <button
+      routerLink="/admin"
+      class="text-blue-600 hover:underline text-sm"
+    >
       ← Torna alla pagina Admin
     </button>
-  </div>
 
-  <mat-card class="admin-section">
-    <h3>Modifiche Profilo In Attesa</h3>
+    <!-- TITLE -->
+    <h2 class="text-3xl font-bold text-slate-900 mt-6">
+      Modifiche Profilo in Attesa
+    </h2>
 
-    <div *ngIf="companies.length === 0">
+    <!-- EMPTY -->
+    <div *ngIf="companies.length === 0" class="mt-8 text-slate-500">
       Nessuna modifica profilo in attesa.
     </div>
 
-    <div class="admin-users-grid">
-      <mat-card class="admin-user-card" *ngFor="let company of companies">
-        <mat-card-title>
+    <!-- LIST -->
+    <div class="mt-8 space-y-6">
+
+      <div
+        *ngFor="let company of companies"
+        class="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 hover:shadow-md transition"
+      >
+
+        <!-- HEADER -->
+        <h3 class="text-lg font-semibold text-slate-900">
           {{ company.companyName }}
-        </mat-card-title>
+        </h3>
 
-        <mat-card-content>
-          <div class="comparison">
-            <!-- EMAIL -->
-            <div class="compare-block">
-              <div>
-                <small>Attuale</small>
-                <p>{{ company.companyEmail }}</p>
-              </div>
+        <!-- COMPARISON -->
+        <div class="mt-6 space-y-5 text-sm">
 
-              <div *ngIf="company.pendingProfileUpdate?.companyEmail">
-                <small class="pending-label">Nuova</small>
-                <p class="pending-value">
-                  {{ company.pendingProfileUpdate?.companyEmail }}
-                </p>
-              </div>
+          <!-- EMAIL -->
+          <div class="grid md:grid-cols-2 gap-4">
+
+            <div class="p-4 rounded-xl bg-slate-50 border">
+              <p class="text-xs text-slate-500 mb-1">Attuale email aziendale</p>
+              <p class="text-slate-800">
+                {{ company.companyEmail }}
+              </p>
             </div>
 
-            <!-- TELEFONO -->
-            <div class="compare-block">
-              <div>
-                <small>Attuale</small>
-                <p>{{ company.companyPhone }}</p>
-              </div>
-
-              <div *ngIf="company.pendingProfileUpdate?.companyPhone">
-                <small class="pending-label">Nuova</small>
-                <p class="pending-value">
-                  {{ company.pendingProfileUpdate?.companyPhone }}
-                </p>
-              </div>
+            <div
+              *ngIf="company.pendingProfileUpdate?.companyEmail"
+              class="p-4 rounded-xl bg-blue-50 border border-blue-200"
+            >
+              <p class="text-xs text-blue-600 mb-1">Nuova email</p>
+              <p class="text-blue-900 font-medium">
+                {{ company.pendingProfileUpdate?.companyEmail }}
+              </p>
             </div>
 
-            <!-- INDIRIZZO -->
-            <div class="compare-block">
-              <div>
-                <small>Attuale</small>
-                <p>{{ company.companyAddress }}</p>
-              </div>
-
-              <div *ngIf="company.pendingProfileUpdate?.companyAddress">
-                <small class="pending-label">Nuova</small>
-                <p class="pending-value">
-                  {{ company.pendingProfileUpdate?.companyAddress }}
-                </p>
-              </div>
-            </div>
           </div>
-        </mat-card-content>
 
-        <mat-card-actions>
+          <!-- PHONE -->
+          <div class="grid md:grid-cols-2 gap-4">
+
+            <div class="p-4 rounded-xl bg-slate-50 border">
+              <p class="text-xs text-slate-500 mb-1">Attuale telefono</p>
+              <p class="text-slate-800">
+                {{ company.companyPhone }}
+              </p>
+            </div>
+
+            <div
+              *ngIf="company.pendingProfileUpdate?.companyPhone"
+              class="p-4 rounded-xl bg-blue-50 border border-blue-200"
+            >
+              <p class="text-xs text-blue-600 mb-1">Nuovo telefono</p>
+              <p class="text-blue-900 font-medium">
+                {{ company.pendingProfileUpdate?.companyPhone }}
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ADDRESS -->
+          <div class="grid md:grid-cols-2 gap-4">
+
+            <div class="p-4 rounded-xl bg-slate-50 border">
+              <p class="text-xs text-slate-500 mb-1">Attuale indirizzo</p>
+              <p class="text-slate-800">
+                {{ company.companyAddress }}
+              </p>
+            </div>
+
+            <div
+              *ngIf="company.pendingProfileUpdate?.companyAddress"
+              class="p-4 rounded-xl bg-blue-50 border border-blue-200"
+            >
+              <p class="text-xs text-blue-600 mb-1">Nuovo indirizzo</p>
+              <p class="text-blue-900 font-medium">
+                {{ company.pendingProfileUpdate?.companyAddress }}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="mt-6 flex gap-3">
+
           <button
-            mat-stroked-button
-            color="primary"
             (click)="approveProfile(company._id)"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           >
             Approva
           </button>
 
           <button
-            mat-stroked-button
-            color="warn"
             (click)="rejectProfile(company._id)"
+            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
           >
             Rifiuta
           </button>
-        </mat-card-actions>
-      </mat-card>
+
+        </div>
+
+      </div>
+
     </div>
-  </mat-card>
+
+  </div>
 </div>

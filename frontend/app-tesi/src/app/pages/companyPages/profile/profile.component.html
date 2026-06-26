@@ -1,42 +1,84 @@
-<div class="profile-container" *ngIf="company">
-  <button mat-button routerLink="/company/dashboard">← Torna alla Dashboard</button>
+<div class="min-h-screen bg-slate-50 px-6 py-10" *ngIf="company">
 
-  <mat-card *ngIf="company" class="profile-card">
-    <!-- 🔥 STATUS PROFILO -->
-    <div class="profile-status">
-      <span
-        class="status-badge"
-        [ngClass]="{
-          pending: company.profileUpdatePending,
-          approved: !company.profileUpdatePending,
-        }"
-      >
-        {{
-          company.profileUpdatePending
-            ? "Modifiche in attesa di approvazione"
-            : "Profilo aggiornato"
-        }}
-      </span>
+  <div class="max-w-3xl mx-auto">
+
+    <!-- BACK -->
+    <button
+      routerLink="/company/dashboard"
+      class="text-blue-600 hover:underline text-sm mb-6">
+      ← Torna alla Dashboard
+    </button>
+
+    <!-- CARD -->
+    <div class="bg-white border rounded-xl shadow-sm p-6">
+
+      <!-- STATUS -->
+      <div class="mb-4">
+        <span
+          class="inline-block text-xs px-3 py-1 rounded-full"
+          [ngClass]="{
+            'bg-yellow-100 text-yellow-700': company.profileUpdatePending,
+            'bg-green-100 text-green-700': !company.profileUpdatePending
+          }">
+
+          {{
+            company.profileUpdatePending
+              ? 'Modifiche in attesa di approvazione'
+              : 'Profilo aggiornato'
+          }}
+
+        </span>
+      </div>
+
+      <!-- TITLE -->
+      <h2 class="text-xl font-bold text-slate-900">
+        {{ company.companyName }}
+      </h2>
+
+      <!-- INFO -->
+      <div class="mt-5 space-y-2 text-sm text-slate-700">
+
+        <p>
+          <span class="text-slate-400">Login:</span>
+          {{ company.email }}
+        </p>
+
+        <p>
+          <span class="text-slate-400">Email Aziendale:</span>
+          {{ company.companyEmail }}
+        </p>
+
+        <p>
+          <span class="text-slate-400">Telefono:</span>
+          {{ company.companyPhone }}
+        </p>
+
+        <p>
+          <span class="text-slate-400">Indirizzo:</span>
+          {{ company.companyAddress }}
+        </p>
+
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="mt-6 flex gap-3">
+
+        <button
+          routerLink="/company/profile-edit"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition">
+          Modifica Profilo
+        </button>
+
+        <button
+          (click)="deleteProfile()"
+          class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition">
+          Elimina Profilo
+        </button>
+
+      </div>
+
     </div>
 
-    <h2>{{ company.companyName }}</h2>
+  </div>
 
-    <p><strong>Email Login:</strong> {{ company.email }}</p>
-
-    <p><strong>Email Aziendale:</strong> {{ company.companyEmail }}</p>
-    <p><strong>Telefono Aziendale:</strong> {{ company.companyPhone }}</p>
-    <p><strong>Indirizzo Aziendale:</strong> {{ company.companyAddress }}</p>
-
-    <mat-divider></mat-divider>
-
-    <div class="actions-row">
-      <button mat-stroked-button color="primary" routerLink="/company/profile-edit">
-        Modifica Profilo
-      </button>
-
-      <button mat-raised-button color="warn" (click)="deleteProfile()">
-        Elimina Profilo
-      </button>
-    </div>
-  </mat-card>
 </div>

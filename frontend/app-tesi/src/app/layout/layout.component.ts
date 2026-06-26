@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './layout.component.css',
 })
 export class LayoutComponent {
+  open = false;
 
   constructor(
     public authService: AuthService,

@@ -1,134 +1,134 @@
-<mat-toolbar color="primary" class="navbar">
-  <!-- Logo a sinistra -->
-  <span class="logo">Job Matching</span>
+<div class="bg-white border-b border-slate-200">
 
-  <span class="spacer"></span>
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center">
 
-  <!-- MENU DESKTOP -->
-  <div class="desktop-menu">
-    <button mat-button routerLink="/">Home</button>
-    <button mat-button routerLink="/jobs">Annunci</button>
+    <!-- LOGO -->
+    <div class="font-bold text-slate-900 text-lg">
+      Job Matching
+    </div>
 
-    <button
-      mat-button
-      routerLink="/company/dashboard"
-      *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
-    >
-      Dashboard
-    </button>
+    <div class="flex-1"></div>
 
-    <button mat-button routerLink="/auth/register" *ngIf="!isAuth()">
-      Registrati
-    </button>
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex items-center gap-2">
 
-    <button mat-button routerLink="/admin" *ngIf="isAdmin() === 'ADMIN'">
-      Admin
-    </button>
-
-    <button
-      mat-stroked-button
-      color="accent"
-      *ngIf="!isAuth()"
-      routerLink="/auth/login"
-    >
-      Login
-    </button>
-
-    <button mat-raised-button color="warn" *ngIf="isAuth()" (click)="logout()">
-      Logout
-    </button>
-  </div>
-
-  <!-- 🔥 BURGER A DESTRA (SOLO MOBILE) -->
-  <button mat-icon-button class="menu-button" (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="over" position="end" class="sidenav">
-    <div class="sidenav-menu">
-      <button
-        class="sidenav-btn"
-        routerLink="/"
-        routerLinkActive="active-link"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="sidenav.close()"
-      >
+      <a routerLink="/" class="text-slate-700 px-3 py-2 rounded hover:bg-slate-100">
         Home
-      </button>
+      </a>
 
-      <button
-        class="sidenav-btn"
-        routerLink="/jobs"
-        routerLinkActive="active-link"
-        (click)="sidenav.close()"
-      >
+      <a routerLink="/jobs" class="text-slate-700 px-3 py-2 rounded hover:bg-slate-100">
         Annunci
-      </button>
+      </a>
 
-      <button
-        class="sidenav-btn"
-        routerLink="/company/dashboard"
-        routerLinkActive="active-link"
+      <a
         *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
-        (click)="sidenav.close()"
+        routerLink="/company/dashboard"
+        class="text-slate-700 px-3 py-2 rounded hover:bg-slate-100"
       >
         Dashboard
-      </button>
+      </a>
 
-      <button
-        class="sidenav-btn"
-        routerLink="/auth/register"
-        routerLinkActive="active-link"
+      <a
         *ngIf="!isAuth()"
-        (click)="sidenav.close()"
+        routerLink="/auth/register"
+        class="text-slate-700 px-3 py-2 rounded hover:bg-slate-100"
       >
         Registrati
-      </button>
+      </a>
 
-      <button
-        class="sidenav-btn"
-        routerLink="/admin"
-        routerLinkActive="active-link"
+      <a
         *ngIf="isAdmin() === 'ADMIN'"
-        (click)="sidenav.close()"
+        routerLink="/admin"
+        class="text-slate-700 px-3 py-2 rounded hover:bg-slate-100"
       >
         Admin
-      </button>
+      </a>
 
-      <button
-        class="sidenav-btn"
-        routerLink="/auth/login"
-        routerLinkActive="active-link"
+      <a
         *ngIf="!isAuth()"
-        (click)="sidenav.close()"
+        routerLink="/auth/login"
+        class="border border-slate-300 px-4 py-2 rounded-lg hover:bg-slate-50"
       >
         Login
-      </button>
+      </a>
 
       <button
-        class="sidenav-btn"
         *ngIf="isAuth()"
-        (click)="logout(); sidenav.close()"
+        (click)="logout()"
+        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
       >
         Logout
       </button>
-    </div>
-  </mat-sidenav>
 
-  <mat-sidenav-content>
-    <div class="layout-content">
-      <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
 
-<footer class="footer">
-  <div class="footer-content">
-    <div>© 2026 Job Matching | Built with Angular & Material</div>
+    <!-- MOBILE BUTTON -->
+    <button (click)="open = !open" class="md:hidden text-slate-700 text-xl">
+      ☰
+    </button>
 
-    <div class="developer">
-      Developed by <span class="developer-name">Basil Elsaid</span>
-    </div>
   </div>
+
+  <!-- MOBILE MENU -->
+  <div *ngIf="open" class="md:hidden border-t border-slate-100 px-6 py-4 space-y-2">
+
+    <a routerLink="/" class="block py-2">Home</a>
+    <a routerLink="/jobs" class="block py-2">Annunci</a>
+
+    <a
+      *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+      routerLink="/company/dashboard"
+      class="block py-2"
+    >
+      Dashboard
+    </a>
+
+    <a
+      *ngIf="!isAuth()"
+      routerLink="/auth/register"
+      class="block py-2"
+    >
+      Registrati
+    </a>
+
+    <a
+      *ngIf="isAdmin() === 'ADMIN'"
+      routerLink="/admin"
+      class="block py-2"
+    >
+      Admin
+    </a>
+
+    <a
+      *ngIf="!isAuth()"
+      routerLink="/auth/login"
+      class="block py-2"
+    >
+      Login
+    </a>
+
+    <button
+      *ngIf="isAuth()"
+      (click)="logout()"
+      class="w-full text-left text-red-600 py-2"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</div>
+<router-outlet></router-outlet>
+<footer class="bg-white border-t border-slate-200 mt-10">
+
+  <div class="max-w-6xl mx-auto px-6 py-6 flex justify-between text-sm text-slate-600">
+
+    <div>© 2026 Job Matching</div>
+
+    <div>
+      Developed by <span class="font-semibold text-slate-900">Basil Elsaid</span>
+    </div>
+
+  </div>
+
 </footer>
