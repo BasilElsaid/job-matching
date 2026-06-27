@@ -12,7 +12,7 @@ La piattaforma permette alle aziende di pubblicare annunci di lavoro e agli stud
 
 Tecnologie utilizzate:
 
-- **Frontend:** Angular + Angular Material  
+- **Frontend:** Angular + Tailwind CSS  
 - **Backend:** NestJS  
 - **Database:** MongoDB  
 
@@ -79,7 +79,7 @@ Per facilitare la valutazione o la sperimentazione del progetto, la piattaforma 
 ### Utilizzo senza installazione locale
 
 Basta visitare direttamente il link del frontend su Vercel:
-[progetto-tesi-rc1u.vercel.app](https://progetto-tesi-rc1u.vercel.app)
+[job-matching-rc1u.vercel.app/](https://job-matching-rc1u.vercel.app/)
 
 Il frontend interagisce automaticamente con il backend su Render e con il database MongoDB Atlas. Non è necessaria alcuna configurazione locale.
 
