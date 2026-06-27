@@ -1,0 +1,29 @@
+services:
+
+  mongodb:
+    image: mongo:8
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET}
+      MONGO_URI: ${MONGO_URI}
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:

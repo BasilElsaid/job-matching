@@ -6,6 +6,9 @@ async function bootstrap() {
 
   const allowedOrigins = [
     'http://localhost:4200',
+
+    'http://frontend:4200',
+
     'https://job-matching-rc1u.vercel.app',
   ];
 
